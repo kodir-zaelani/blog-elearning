@@ -1,6 +1,5 @@
 <?php
 
-// use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,8 +32,3 @@ Route::group(['layout' => 'frontend.templates.default'], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-// View::composer('*', function($view) {
-//     $global_categories = \App\Models\Category::latest()->take(6)->get();
-//     $view->with('global_categories', $global_categories);
-//     });
