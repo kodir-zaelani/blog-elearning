@@ -74,15 +74,9 @@
                 </div> 
                 @endforeach
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <!-- Pagination -->
-                    <div class="pagination-main text-center">
-                        <ul class="pagination" style="padding:30px;">
-                            <a class="btn animate" href="{{ route('course.all-list') }}">View All Course </a>
-                        </ul>
-                    </div>
-                    <!--/ End Pagination -->
+            <div class="row text-center mt-4">
+                <div class="col-12 ">
+                    <a href="{{ route('course.all-list') }}" class="btn animate">View More</a>
                 </div>
             </div>	
         </div>

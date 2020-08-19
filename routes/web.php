@@ -11,9 +11,11 @@ use Illuminate\Support\Facades\Route;
 Route::group(['layout' => 'frontend.templates.default'], function () {
     Route::livewire('/', 'frontend.home.index')->name('root');
     Route::livewire('/about', 'frontend.about.index')->name('about.index');
+    Route::livewire('/portfolio', 'frontend.portfolio.all')->name('portfolio');
     Route::livewire('/category/{slug}', 'frontend.category.show')->name('category.show');
     Route::livewire('/author/{slug}', 'frontend.author.show')->name('author.show');
     Route::livewire('/tag/{slug}', 'frontend.tag.show')->name('tag.show');
+    
     Route::prefix('post')->group(function () {
         Route::livewire('/all', 'frontend.post.all')->name('post.all');
         Route::livewire('/archive', 'frontend.post.archive')->name('post.archive');

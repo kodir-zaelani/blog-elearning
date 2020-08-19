@@ -18,6 +18,7 @@
                         @foreach ($albums as $album)
                             <li data-filter=".{{ $album->title }}" class="cbp-filter-item">{{ $album->title }}<div class="cbp-filter-counter"></div></li>
                         @endforeach
+
                     </ul>  		
                 </div>
                 <!--/ End portfolio Nav -->
@@ -32,15 +33,16 @@
                     <div class="portfolio-single">
                         <div class="portfolio-head">
                             @if ($photo->ImageThumbUrl)
-                            <img src="{{ $photo->ImageThumbUrl }}" alt="#"/>
+                            <a data-fancybox="portfolio" href="{{ $photo->ImageUrl }}" ><img src="{{ $photo->ImageThumbUrl }}" alt="#"/></a>
                             @else
                             <img src="assets/kz/images/gallery-1.jpg" alt="#"/>
                             @endif
                             <div class="portfolio-hover">
-                                <h4><a href="portfolio-single.html">{{ $photo->title }}</a></h4>
+                                <h4>{{ $photo->caption }}</h4>
+                                {{-- <h4><a href="{{ route('portfolio') }}">{{ $photo->caption }}</a></h4> --}}
                                 <div class="p-button">
-                                    <a data-fancybox="portfolio" href="{{ $photo->ImageUrl }}" class="btn primary"><i class="fa fa-photo"></i></a>
-                                    <a href="portfolio-single.html" class="btn"><i class="fa fa-link"></i></a>
+                                    <a data-fancybox="portfolio" data-caption="{{ $photo->caption }}" href="{{ $photo->ImageUrl }}" class="btn primary" data-caption="{{ $photo->caption }}"><i class="fa fa-photo"></i></a>
+                                    {{-- <a href="{{ route('portfolio') }}" class="btn"><i class="fa fa-link"></i></a> --}}
                                 </div>
                             </div>
                         </div>
@@ -49,19 +51,12 @@
                 @endforeach
 
             </div>
-            <!-- Load More Button -->
-            <div id="loadMore" class="cbp-l-loadMore-button">
-                <div class="load-button">
-                    <a href="more-portfolio/portfolio.html" class="cbp-l-loadMore-link btn" rel="nofollow">
-                        <span class="icon"><i class="fa fa-angle-down"></i></span>
-                        <span class="cbp-l-loadMore-defaultText">Load More</span>
-                        <span class="cbp-l-loadMore-loadingText">Loading...</span>
-                        <span class="cbp-l-loadMore-noMoreLoading">No more project</span>
-                    </a>
+            <div class="row text-center mt-4">
+                <div class="col-12 ">
+                    <a href="{{ route('portfolio') }}" class="btn animate">View More</a>
                 </div>
-            </div>
-            <!--/ End Load More Button -->
-        </div>
+            </div>	
+          </div>
     </div>
 </section>
 </div>
