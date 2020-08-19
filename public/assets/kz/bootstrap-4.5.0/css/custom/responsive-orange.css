@@ -1,0 +1,588 @@
+/* =====================================
+Template Name: Bizlamp
+Author Name: ThemeLamp
+Author URI: http://themelamp.com
+Description: Bizlamp is a multipurpose business html5 template. This template is perfect for any business purpose.
+Version:	1.0
+========================================*/
+/* Tablet Layout */
+@media (min-width: 768px) and (max-width: 991px) {
+.section-title {
+	padding: 0 40px;
+}
+.breadcrumbs {
+	padding: 144px 0 70px;
+}
+.breadcrumbs .bread-title h2 {
+	font-size: 35px;
+}
+.portfolio .section-title {
+	padding: 0 85px;
+}
+.header .top-contact {
+	float: none;
+	text-align: center;
+}
+.header .top-right {
+	float: none;
+	text-align: center;
+}	
+.header .nav {
+	float: left;
+	display: inherit;
+}
+.header .nav li {
+	margin-right: 15px;
+}
+.header .nav li a {
+	text-transform: capitalize;
+	padding: 25px 0;
+}
+.header .nav li a:before{
+	display:none;
+}
+.header .nav li:hover a, 
+.header .nav li.active a {
+	background: transparent;
+	color:#1BBC9B;
+}
+.header .nav li .dropdown {
+	width: 182px;
+}
+.header .right-bar {
+	margin-left: 15px;
+}	
+.header.creative .nav li {
+	margin-right: 12px;
+}
+.header.creative .nav li:last-child{
+	margin:0;
+}
+.header.creative .right-bar {
+	margin-left: 15px;
+}
+.hero-area,
+.hero-area .single-slider,
+.hero-area .slider-text {
+	height: 550px;
+}
+.hero-area .slider-text .short {
+	font-size: 20px;
+}
+.hero-area .slider-text h1 {
+	font-size: 45px;
+	line-height: 50px;
+}
+.hero-area .slider-text p {
+	padding-right: 150px;
+	font-size: 14px;
+}
+.hero-area .slider-text.align-middle h1 span{
+	display:block;
+}
+.hero-area .slider-text.align-right p {
+	padding-left: 150px;
+	padding-right: 0px;
+	font-size: 14px;
+}
+.hero-area .owl-dots {
+	bottom: 30px;
+}
+.features .single-feature {
+	padding: 30px 0;
+}
+.features .single-feature i {
+	font-size: 40px;
+}
+.features .single-feature h2 {
+	font-size: 16px;
+	margin: 10px 0;
+}
+.call-to-action h2 {
+	font-size: 30px;
+}
+.consulting::before {
+	left: 0;
+	transform: none;
+	width: 100%;
+}
+.testimonials .t-video {
+	position: relative;
+	width: 100%;
+	height: 450px;
+}
+.team .team-main {
+	height: 400px;
+}
+.team .single-team.back {
+	height: 400px;
+}
+.pricing-table .single-table,
+.pricing-table .single-table:hover,
+.pricing-table .single-table.active{
+	transform:none;
+}
+.faqs-main {
+	margin-top: 30px;
+}
+.newsletter .form{
+	margin-top:10px;
+}
+.newsletter .form-group {
+	width: 32%;
+	margin-right: 13px;
+}
+.timeline .single-timeline h2 {
+	font-size: 18px;
+}
+.timeline .single-timeline {
+	padding-right: 125px;
+}
+.timeline .timeline-main:nth-child(2n) .single-timeline {
+	padding-left: 125px;
+}
+.error-page .error-inner {
+	padding: 0 85px;
+}
+.error-page .error-inner h1 {
+	font-size: 115px;
+}
+.error-page .error-inner h1 span {
+	font-size: 130px;
+}
+.coming-soon .section-title {
+	margin-top: 30px;
+}
+.portfolio.column .section-title {
+	padding: 0 50px;
+}
+.blogs .iframe .embed-responsive {
+	height: 218px;
+}
+.blogs.list .iframe .embed-responsive {
+	height: 400px;
+}
+.blogs.list .blog-head,
+.blogs.list.with-sidebar .blog-head,
+.blogs.list.with-sidebar .blog-bottom,
+.blogs.list .blog-bottom{
+	width: 100%;
+}
+.cart-information .single-info h4 {
+	font-size: 15px;
+}
+.contact-us .contact-address {
+	padding:0;
+	margin-left:0px;
+	border:none;
+}
+}
+/* Mobile Layout */
+@media (max-width: 767px) {
+.menu-area{
+	display:none;
+}
+.mobile-nav{
+	display:block;
+}
+.section-title {
+	padding: 0px;
+}
+.section-title p {
+	font-size: 14px;
+}
+.breadcrumbs {
+	padding: 70px 0;
+}
+.breadcrumbs .bread-title h2 {
+	font-size: 34px;
+}
+.breadcrumbs .bread-title h2 span {
+	font-size: 14px;
+}
+.breadcrumbs .bread-list {
+	padding: 10px 25px;
+}
+.portfolio .section-title {
+	padding: 0 5px;
+}
+.portfolio.column .section-title {
+	padding: 0;
+}
+.portfolio .portfolio-nav {
+	margin: 10px 0 50px;
+}
+.portfolio #portfolio-menu li {
+	margin-top: 10px !important;
+}
+.header .top-contact {
+	float: none;
+	text-align: center;
+}
+.header .top-right {
+	float: none;
+	text-align: center;
+}	
+.header .header-inner {
+	padding: 10px 0;
+}
+.header .logo {
+	margin:0;
+}
+.header .nav {
+	float: left;
+	display: inherit;
+}
+.header .nav li {
+	margin-right: 15px;
+}
+.header .nav li a {
+	text-transform: capitalize;
+	padding: 25px 0;
+}
+.header .nav li:hover a, 
+.header .nav li.active a {
+	background: transparent;
+	color:#282828;
+}
+.header .right-bar {
+	margin-left: 15px;
+}	
+.header .header-inner {
+	padding: 10px 0;
+	position: relative;
+}
+.slicknav_btn {
+	background: #FF9800;
+	border-radius: 0px;
+	margin: 10px 0 0;
+}
+.slicknav_menu {
+	background: transparent;
+	margin: 0;
+	padding: 0;
+}
+.slicknav_nav {
+	background: #222534;
+	margin-top: 55px;
+	display: block;
+}
+.slicknav_nav .slicknav_item a i{
+	display:none;
+}
+.slicknav_nav .slicknav_row{
+	border-radius:3px !important;
+}
+.slicknav_nav a:hover {
+   background:#FF9800;
+   color: #fff;
+}
+.hero-area, 
+.hero-area .single-slider, 
+.hero-area .slider-text {
+	margin: 0;
+	padding: 0;
+	height: 400px;
+}
+.hero-area .slider-text .short {
+	font-size: 15px;
+	padding: 4px 10px;
+}
+.hero-area .slider-text h1 {
+	font-size: 25px;
+	line-height: 33px;
+}
+.hero-area .slider-text p {
+	padding: 0;
+	margin: 10px 0 0;
+	font-size: 14px;
+}
+.hero-area .slider-text .button {
+	margin-top: 10px;
+}
+.hero-area .slider-text.align-middle h1 span{
+	display:block;
+}
+.hero-area .slider-text.align-right p {
+	padding-left: 0;
+	padding-right: 0px;
+}
+.hero-area .owl-dots {
+	bottom: 15px;
+}
+.hero-area.creative .text-inner {
+	margin: 60px 0 0;
+}
+.hero-area.creative .text-inner h1 {
+	line-height: 35px;
+	font-size: 26px;
+}
+.hero-area.creative .btn {
+	padding: 12px 28px;
+	font-size: 13px;
+	text-transform:capitalize;
+}
+.hero-area.creative .cd-words-wrapper {
+	font-size: 22px;
+}
+.features {
+	overflow: hidden;
+}
+.features .single-feature {
+	padding: 25px 30px;
+	text-align: center;
+}
+.features .single-feature i {
+	font-size: 40px;
+}
+.features .single-feature h2 {
+	font-size: 16px;
+	margin: 10px 0;
+}
+.why-choose .why-content {
+	text-align: center;
+}
+.why-choose .single-choose {
+	text-align: center;
+}
+.why-choose h2 {
+	font-size: 22px;
+}
+.why-choose h2 span {
+	font-size: 60px;
+	color: #1BBC9B;
+	display: block;
+}
+.call-to-action h2 {
+	font-size: 30px;
+}
+.call-to-action p {
+	font-size: 14px;
+	padding:0;
+}
+.call-to-action .btn {
+	padding: 10px 15px;
+}
+.consulting::before {
+	left: 0;
+	transform: none;
+	width: 100%;
+}
+.team .team-main,
+.team .single-team.back {
+	height: 345px;
+}
+.testimonials .t-video {
+	position: relative;
+	width: 100%;
+	height: 450px;
+}
+.pricing-table .single-table,
+.pricing-table .single-table:hover,
+.pricing-table .single-table.active{
+	transform:none;
+}
+.faqs-main {
+	margin-top: 30px;
+}
+.faqs-main .single-faq .faq-title {
+	font-size: 14px;
+}
+.faqs-main .single-faq .faq-title a::after {
+	font-size: 13px;
+}
+.newsletter .form{
+	margin-top:10px;
+}
+.newsletter .form-group {
+	width: 100%;
+	margin-right: 13px;
+	margin: 10px 0 0 !important;
+}
+.newsletter .form-group button {
+	padding: 0 20px;
+	text-align:left;
+}
+.timeline .timeline-main{
+	margin-bottom:30px;
+}
+.timeline .timeline-mai:last-child{
+	margin:0;
+}
+.timeline .single-timeline {
+	padding-right: 0;
+	margin-top: 30px;
+}
+.timeline .single-timeline .image {
+	position:relative;
+	margin-left: -37.5px;
+	margin-bottom: 15px;
+}
+.timeline .single-content {
+	width: 100%;
+}
+.timeline .timeline-main:nth-child(2n) .single-timeline {
+	padding-left: 0;
+}
+.timeline .timeline-main:nth-child(2n) .single-content {
+	margin-left: 0;
+}
+.error-page .error-inner {
+	padding: 0;
+}
+.error-page .error-inner h1 {
+	font-size: 115px;
+}
+.error-page .error-inner h1 span {
+	font-size: 130px;
+}
+.coming-soon .subscription-form form {
+	position: relative;
+	width: 100%;
+	display: inline-block;
+}
+.coming-soon .section-title h2 {
+	margin: 0;
+	font-size: 25px;
+}
+.coming-soon .section-title {
+	margin-top: 30px;
+}
+.coming-soon .coming-time {
+	margin-left: -15px;
+}
+.coming-soon .cdown {
+	margin: 15px 0 0 15px !important;
+	width: 110px;
+	height: 110px;
+}
+.coming-soon .cdown span {
+	margin-top: 24px;
+}
+.services.single .single-service h2 {
+	font-size: 25px;
+}
+.services.single .single-gallery,
+.services.single .service-gallery{
+	height: 200px;
+}
+.portfolio.single .single-slider {
+	width: 100%;
+	height: 200px;
+}
+.portfolio.single .content h2 {
+	font-size: 24px;
+}
+.blogs.list .blog-head,
+.blogs.list.with-sidebar .blog-head,
+.blogs.list.with-sidebar .blog-bottom,
+.blogs.list .blog-bottom{
+	width: 100%;
+}
+.blogs.list .iframe .embed-responsive {
+	height: 250px;
+}
+.blogs.single .blog-description h1 {
+	font-size: 20px;
+}
+.blogs.single .bottom-info .tags {
+	float: none;
+	text-align: center;
+}
+.blogs.single .bottom-info .social {
+	float: none;
+	text-align: center;
+}
+.blogs.single .comment-list {
+	padding-left: 0;
+}
+.blogs.single .form-group.button {
+	text-align: left;
+}
+.shop .shop-shorter {
+	float: none;
+	text-align: center;
+}
+.shop .view-mode {
+	float: none;
+	text-align: center;
+}
+.shop.single .shop-color {
+	float: none;
+	margin-right: 0px;
+	padding-right: 0px;
+	border:none;
+}
+.shop.single .quantity,
+.shop.single .add-to-cart {
+	display: block;
+	margin:0;
+}
+.shop.single .rating-main,
+.shop.single .available {
+	float: none;
+}
+.shop.single .add-to-cart{
+	margin-top:10px;
+}
+.shop.single .nav-tabs li a {
+	padding: 8px 6px;
+}
+.cart-information .single-info h4 {
+	font-size: 14px;
+}
+.shopping-summery thead {
+	display: none;
+}
+.shopping-cart .table td{
+	padding: .75rem;
+	vertical-align: top;
+	border-top: 1px solid #e9ecef;
+	display: block;
+	height: auto;
+	text-align: left !important;
+	padding-left: calc(50% + 20px);
+	width: 100%;
+	position:relative;
+}
+.shopping-cart .table td::before {
+	content: attr(data-title);
+	display: block;
+	font-weight: bold;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	padding: 10px 20px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 50%;
+	height: 100%;
+	border-bottom: 1px solid #e6ebee;
+	background: #1BBC9B;
+	color: #fff;
+	border: none;
+}
+.shopping-summery tbody tr {
+	border-bottom:none;
+}
+.shopping-button .btn.continue {
+	margin-bottom: 10px;
+}
+.shopping-button .btn {
+	float: left;
+}
+.contact-us .contact-address {
+	padding:0;
+	margin-left:0px;
+	border:none;
+}
+.mail-success {
+	padding: 80px 0;
+}
+.mail-success h2 {
+	font-size: 32px;
+}
+}
+/* Mobile Layout */
+@media (max-width: 320px) {}
