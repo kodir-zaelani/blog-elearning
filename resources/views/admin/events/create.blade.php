@@ -1,4 +1,6 @@
-@extends('layouts.app')
+@extends('admin.templates.default')
+@section("title")Events @endsection
+
 @push('page-style')
 <!-- Jasny Bootstrap 4 -->
 <link rel="stylesheet" href="{{ asset('/assets/admin/modules/jasny-bootstrap/4.0.0/css/jasny-bootstrap.min.css')}}">

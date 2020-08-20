@@ -1,5 +1,5 @@
-@extends('layouts.app')
-
+@extends('admin.templates.default')
+@section("title")Dashboard @endsection
 @section('content')
 <div class="main-content">
     <section class="section">

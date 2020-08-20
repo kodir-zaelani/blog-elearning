@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('admin.templates.default')
+@section("title")Create Video @endsection
 
 @section('content')
     <div class="main-content">

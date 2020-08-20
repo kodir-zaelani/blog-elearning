@@ -78,14 +78,10 @@
                                             </li>
                                             @auth
                                              <li>
-                                                <a href="#">{{ Auth::user()->name }}<i class="fa fa-angle-down"></i></a>
-                                                {{-- <livewire:logout /> --}}
+                                                <a href="#"><i class="fa fa-user-circle"></i> {{ Auth::user()->name }}<i class="fa fa-angle-down"></i></a>
                                                 <ul class="dropdown">
                                                     <li>
-                                                        <a target="_blank" href="{{ route('logout') }}"><i class="fa fa-sign-out-alt"></i> Signt Out</a>
-                                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                            @csrf
-                                                        </form>
+                                                        <livewire:frontend.auth.logout />
                                                     </li>
                                                 </ul>
                                             </li> 

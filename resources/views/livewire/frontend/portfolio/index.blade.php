@@ -41,7 +41,7 @@
                                 <h4>{{ $photo->caption }}</h4>
                                 {{-- <h4><a href="{{ route('portfolio') }}">{{ $photo->caption }}</a></h4> --}}
                                 <div class="p-button">
-                                    <a data-fancybox="portfolio" data-caption="{{ $photo->caption }}" href="{{ $photo->ImageUrl }}" class="btn primary" data-caption="{{ $photo->caption }}"><i class="fa fa-photo"></i></a>
+                                    <a data-fancybox="portfolio"  href="{{ $photo->ImageUrl }}" class="btn primary" ><i class="fas fa-image"></i></a>
                                     {{-- <a href="{{ route('portfolio') }}" class="btn"><i class="fa fa-link"></i></a> --}}
                                 </div>
                             </div>

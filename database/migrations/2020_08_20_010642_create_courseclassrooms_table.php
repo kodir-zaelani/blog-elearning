@@ -22,6 +22,8 @@ class CreateCourseclassroomsTable extends Migration
             $table->string('slug')->unique();
             $table->timestamps();
             $table->softDeletes();
+            
+            $table->foreign('classroom_id')->references('id')->on('classrooms')->onDelete('restrict');
             $table->foreign('courselevelclassinstructur_id')->references('id')->on('courselevelclassinstructurs')->onDelete('restrict');
         });
     }
