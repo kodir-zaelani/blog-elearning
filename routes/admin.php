@@ -45,13 +45,13 @@ use Illuminate\Support\Facades\Route;
         Route::resource('/department', 'DepartmentController');
         
         //Instructur Class
-        Route::resource('/instructur', 'InstructurController');
+        Route::resource('/classroom', 'ClassroomController');
 
         //Course Class
-        Route::resource('/course', 'CourseController');
+        Route::resource('/typecourse', 'TypecourseController');
        
         //Screenshoot Class
-        Route::resource('/screenshot', 'ScreenshotController');
+        Route::resource('/courselevelclass', 'CourselevelclassController');
         
         //Tool Class
         Route::resource('/tool', 'ToolController');

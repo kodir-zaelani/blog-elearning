@@ -1,31 +1,31 @@
 @extends('admin.templates.default')
-@section("title")Roles @endsection
+@section("title")Level Class @endsection
 
 @section('content')
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Roles</h1>
+            <h1>Level Class</h1>
         </div>
 
         <div class="section-body">
 
             <div class="card">
                 <div class="card-header">
-                    <h4><i class="fas fa-unlock"></i> Roles</h4>
+                    <h4><i class="fas fa-folder"></i> Level Class</h4>
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.role.index') }}" method="GET">
+                    <form action="{{ route('admin.levelclass.index') }}" method="GET">
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                @can('roles.create')
+                                @can('levelclasses.create')
                                     <div class="input-group-prepend">
-                                        <a href="{{ route('admin.role.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
+                                        <a href="{{ route('admin.levelclass.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
                                     </div>
                                 @endcan
                                 <input type="text" class="form-control" name="q"
-                                       placeholder="cari berdasarkan nama role">
+                                       placeholder="cari berdasarkan nama kategori">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> CARI
                                     </button>
@@ -38,32 +38,31 @@
                             <thead>
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
-                                <th scope="col" style="width: 15%">NAMA ROLE</th>
-                                <th scope="col">PERMISSIONS</th>
+                                <th scope="col">LEVEL KELAS</th>
+                                <th scope="col">ALPHABET</th>
                                 <th scope="col" style="width: 15%;text-align: center">AKSI</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($roles as $no => $role)
+                            @foreach ($levelclasses as $no => $levelclass)
                                 <tr>
-                                    <th scope="row" style="text-align: center" class="align-text-top">{{ ++$no + ($roles->currentPage()-1) * $roles->perPage() }}</th>
-                                    <td class="align-text-top">{{ $role->name }}</td>
+                                    <th scope="row" style="text-align: center">{{ ++$no + ($levelclasses->currentPage()-1) * $levelclasses->perPage() }}</th>
+                                    <td>{{ $levelclass->title }}</td>
                                     <td>
-                                        @foreach($role->getPermissionNames() as $permission)
-                                            <button class="btn btn-sm btn-success mb-1 mt-1 mr-1">{{ $permission }}</button>
-                                        @endforeach
+                                        {{ $levelclass->idalphabet }}<br/>
+                                        <small><em>{{ $levelclass->enalphabet }}</em></small>
                                     </td>
-                                    <td class="text-center align-text-top mt-2">
-                                        @can('roles.edit')
-                                            <a href="{{ route('admin.role.edit', $role->id) }}" class="btn btn-sm btn-primary mt-2">
+                                    <td class="text-center">
+                                        @can('levelclasses.edit')
+                                            <a href="{{ route('admin.levelclass.edit', $levelclass->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
                                         @endcan
                                         
-                                        @can('roles.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger mt-2" id="{{ $role->id }}">
+                                        @can('levelclasses.delete')
+                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $levelclass->id }}">
                                                 <i class="fa fa-trash"></i>
-                                            </button>
+                                            </button>  
                                         @endcan
                                     </td>
                                 </tr>
@@ -71,7 +70,7 @@
                             </tbody>
                         </table>
                         <div style="text-align: center">
-                            {{$roles->links("vendor.pagination.bootstrap-4")}}
+                            {{$levelclasses->links("vendor.pagination.bootstrap-4")}}
                         </div>
                     </div>
                 </div>
@@ -102,7 +101,7 @@
 
                     //ajax delete
                     jQuery.ajax({
-                        url: "{{ route("admin.role.index") }}/"+id,
+                        url: "{{ route("admin.levelclass.index") }}/"+id,
                         data:     {
                             "id": id,
                             "_token": token
@@ -143,4 +142,5 @@
             })
         }
 </script>
+
 @stop

@@ -89,16 +89,37 @@
             </li>                    
 
             <li class="menu-header">E-Learning Management</li>
+
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span> E-Learning </span></a>
                     <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{route('admin.levelclass.index')}}">Level Class</a></li>
-                    <li><a class="nav-link" href="{{route('admin.department.index')}}">Dapartment</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">Course</a></li>
+
+                    @can('levelclasses.index')
+                        <li><a class="nav-link" href="{{route('admin.levelclass.index')}}">Level Class</a></li>
+                    @endcan
+
+                    @can('departments.index')
+                        <li><a class="nav-link" href="{{route('admin.department.index')}}">Dapartment</a></li>
+                    @endcan
+
+                    @can('classrooms.index')
+                        <li><a class="nav-link" href="{{route('admin.classroom.index')}}">Classroom</a></li>
+                    @endcan
+                    
+
+                    @can('typecourses.index')
+                        <li><a class="nav-link" href="{{route('admin.typecourse.index')}}">Type Course</a></li>
+                    @endcan
+
+                    @can('courselevelclasses.index')
+                        <li><a class="nav-link" href="{{route('admin.courselevelclass.index')}}">Course Level Class</a></li>
+                    @endcan
+
                     <li><a class="nav-link" href="layout-top-navigation.html">Section</a></li>
                     <li><a class="nav-link" href="layout-top-navigation.html">Lesson</a></li>
                     </ul>
                 </li>
+
             @if(auth()->user()->can('roles.index') || auth()->user()->can('permission.index') || auth()->user()->can('users.index'))
             <li class="menu-header">PENGATURAN</li>
             @endif

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
@@ -40,7 +41,7 @@ class RoleController extends Controller
     */
    public function create()
    {
-       $permissions = Permission::latest()->get();
+       $permissions = Permission::orderBy('name', 'asc')->get();
        return view('admin.roles.create', compact('permissions'));
    }
 
@@ -57,7 +58,7 @@ class RoleController extends Controller
        ]);
 
        $role = Role::create([
-           'name' => $request->input('name')
+           'name' => Str::lower($request->input('name'))
        ]);
 
        //assign permission to role
@@ -80,7 +81,7 @@ class RoleController extends Controller
     */
    public function edit(Role $role)
    {
-       $permissions = Permission::latest()->get();
+       $permissions = Permission::orderBy('name', 'asc')->get();
        return view('admin.roles.edit', compact('role', 'permissions'));
    }
 
@@ -99,7 +100,7 @@ class RoleController extends Controller
        
        $role = Role::findOrFail($role->id);
        $role->update([
-           'name' => $request->input('name')
+           'name' => Str::lower($request->input('name'))
        ]);
 
        //assign permission to role

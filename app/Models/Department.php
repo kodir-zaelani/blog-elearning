@@ -11,6 +11,12 @@ class Department extends Model
     
     protected $guarded = [];
 
+     //hasMany ke table atau Model Post
+     public function classroom()
+     {
+         return $this->hasMany(Classroom::class);
+     }
+
     // public function getRouteKeyName()
     // {
     //     return 'slug';

@@ -52,9 +52,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Slider', 'author_id');
     }
     
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
     
 }

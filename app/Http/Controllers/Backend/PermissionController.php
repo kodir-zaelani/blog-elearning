@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
@@ -25,7 +26,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permissions = Permission::latest()->when(request()->q, function($permissions) {
+        $permissions = Permission::orderBy('name', 'asc')->when(request()->q, function($permissions) {
             $permissions = $permissions->where('name', 'like', '%'. request()->q . '%');
         })->paginate(10);
 
@@ -44,7 +45,7 @@ class PermissionController extends Controller
         ]);
 
         $permission = Permission::create([
-            'name' => $request->input('name'),
+            'name' => Str::lower($request->input('name')),
         ]);
 
         if($permission){
