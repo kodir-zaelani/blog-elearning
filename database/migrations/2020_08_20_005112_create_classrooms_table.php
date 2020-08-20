@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategorycoursesTable extends Migration
+class CreateClassroomsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,19 @@ class CreateCategorycoursesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categorycourses', function (Blueprint $table) {
+        Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('levelclass_id')->unsigned();
-            $table->bigInteger('typecourse_id')->unsigned();
-            $table->string('title_id');
-            $table->string('title_en');
-            $table->string('image')->nullable();
+            $table->bigInteger('departement_id')->unsigned();
+            $table->string('complete_title')->unique();
+            $table->string('short_title');
+            $table->string('slug')->unique();
             $table->softDeletes;
             $table->timestamps();
 
             $table->foreign('levelclass_id')->references('id')->on('levelclasses')->onDelete('restrict');
-            $table->foreign('typecourse_id')->references('id')->on('typecourses')->onDelete('restrict');
+            $table->foreign('departement_id')->references('id')->on('departements')->onDelete('restrict');
+
         });
     }
 
@@ -35,6 +36,6 @@ class CreateCategorycoursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorycourses');
+        Schema::dropIfExists('classrooms');
     }
 }

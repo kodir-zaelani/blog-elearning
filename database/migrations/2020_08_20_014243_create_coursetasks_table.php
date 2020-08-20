@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTodotasksTable extends Migration
+class CreateCoursetasksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,21 @@ class CreateTodotasksTable extends Migration
      */
     public function up()
     {
-        Schema::create('todotasks', function (Blueprint $table) {
+        Schema::create('coursetasks', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('lesson_id');
+            $table->bigInteger('courselesson_id');
             $table->string('title');
-            $table->string('content')->nullable();
-            $table->text('embed')->nullable();
+            $table->string('description')->nullable();
             $table->string('link')->nullable();
+            $table->text('embed')->nullable();
+            $table->string('video')->nullable();
+            $table->string('audio')->nullable();
             $table->string('atachment')->nullable();
+            $table->softDeletes;
             $table->timestamps();
+
+            $table->foreign('courselesson_id')->references('id')->on('courselessons')->onDelete('restrict');
+
         });
     }
 
@@ -32,6 +38,6 @@ class CreateTodotasksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('todotasks');
+        Schema::dropIfExists('coursetasks');
     }
 }

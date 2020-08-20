@@ -15,13 +15,16 @@ class CreateToolsTable extends Migration
     {
         Schema::create('tools', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('course_id')->unsigned();
+            $table->bigInteger('courselevelclassinstructur_id')->unsigned();
             $table->string('title');
             $table->string('link');
+            $table->string('slug')->unique();
             $table->string('image')->nullable();
+            $table->softDeletes;
             $table->timestamps();
 
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('restrict');
+            $table->foreign('courselevelclassinstructur_id')->references('id')->on('courselevelclassinstructurs')->onDelete('restrict');
+
         });
     }
 
