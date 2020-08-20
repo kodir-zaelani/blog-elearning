@@ -18,6 +18,7 @@ class CreateToolsTable extends Migration
             $table->bigInteger('courselevelclassinstructur_id')->unsigned();
             $table->string('title');
             $table->string('link');
+            $table->string('referenc')->nullable();
             $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->softDeletes;
