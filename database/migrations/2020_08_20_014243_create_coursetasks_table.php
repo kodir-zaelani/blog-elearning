@@ -15,7 +15,7 @@ class CreateCoursetasksTable extends Migration
     {
         Schema::create('coursetasks', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('courselesson_id');
+            $table->bigInteger('courselesson_id')->unsigned();
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('link')->nullable();
@@ -23,7 +23,7 @@ class CreateCoursetasksTable extends Migration
             $table->string('video')->nullable();
             $table->string('audio')->nullable();
             $table->string('atachment')->nullable();
-            $table->softDeletes;
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('courselesson_id')->references('id')->on('courselessons')->onDelete('restrict');

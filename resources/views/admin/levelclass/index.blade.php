@@ -37,9 +37,8 @@
                             <thead>
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
-                                <th scope="col">NAMA KELAS</th>
-                                <th scope="col">Alphabet (Id)</th>
-                                <th scope="col">Alphabet (En)</th>
+                                <th scope="col">LEVEL KELAS</th>
+                                <th scope="col">ALPHABET</th>
                                 <th scope="col" style="width: 15%;text-align: center">AKSI</th>
                             </tr>
                             </thead>
@@ -48,8 +47,10 @@
                                 <tr>
                                     <th scope="row" style="text-align: center">{{ ++$no + ($levelclasses->currentPage()-1) * $levelclasses->perPage() }}</th>
                                     <td>{{ $levelclass->title }}</td>
-                                    <td>{{ $levelclass->idalphabet }}</td>
-                                    <td>{{ $levelclass->enalphabet }}</td>
+                                    <td>
+                                        {{ $levelclass->idalphabet }}<br/>
+                                        <small><em>{{ $levelclass->enalphabet }}</em></small>
+                                    </td>
                                     <td class="text-center">
                                         @can('levelclasses.edit')
                                             <a href="{{ route('admin.levelclass.edit', $levelclass->id) }}" class="btn btn-sm btn-primary">

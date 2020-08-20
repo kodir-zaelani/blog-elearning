@@ -21,7 +21,7 @@ class CreateCourselevelclassesTable extends Migration
             $table->string('title_id');
             $table->string('title_en');
             $table->string('slug')->unique();
-            $table->softDeletes;
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('levelclass_id')->references('id')->on('levelclasses')->onDelete('restrict');

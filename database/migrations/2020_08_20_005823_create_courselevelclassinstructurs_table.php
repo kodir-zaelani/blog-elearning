@@ -15,13 +15,13 @@ class CreateCourselevelclassinstructursTable extends Migration
     {
         Schema::create('courselevelclassinstructurs', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('courselevelclass_id');
-            $table->bigInteger('user_id');
+            $table->bigInteger('courselevelclass_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->string('video_preview')->nullable();
             $table->string('description');
-            $table->softDeletes;
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('courselevelclass_id')->references('id')->on('courselevelclasses')->onDelete('restrict');

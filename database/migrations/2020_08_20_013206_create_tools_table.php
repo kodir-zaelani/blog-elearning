@@ -21,7 +21,7 @@ class CreateToolsTable extends Migration
             $table->string('referenc')->nullable();
             $table->string('slug')->unique();
             $table->string('image')->nullable();
-            $table->softDeletes;
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('courselevelclassinstructur_id')->references('id')->on('courselevelclassinstructurs')->onDelete('restrict');

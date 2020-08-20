@@ -65,7 +65,8 @@
                                             </li>	
                                             <li><a href="{{ route('post.all') }}">Blog</a>
                                             </li>
-                                            <li><a href="#">Links<i class="fa fa-angle-down"></i></a>
+                                            <li>
+                                                <a href="#">Links<i class="fa fa-angle-down"></i></a>
                                                 <ul class="dropdown">
                                                     <li><a target="_blank" href="https:/kemdikbud.go.id/">Kemdikbud</a></li>
                                                     <li><a target="_blank" href="https://belajar.kemdikbud.go.id/">Rumah Belajar</a></li>
@@ -76,22 +77,23 @@
                                             {{-- <li><a href="{{ url('contact') }}">Contact</a> --}}
                                             </li>
                                             @auth
-                                            {{--  <li>
+                                             <li>
                                                 <a href="#">{{ Auth::user()->name }}<i class="fa fa-angle-down"></i></a>
-                                                <livewire:logout></livewire:logout>
+                                                {{-- <livewire:logout /> --}}
                                                 <ul class="dropdown">
                                                     <li>
-                                                        <livewire:logout></livewire:logout>
-
-                                                        {{--  <a target="_blank" href="/logout">Signout</a>  --}}
-                                                   {{--   </li>
+                                                        <a target="_blank" href="{{ route('logout') }}"><i class="fa fa-sign-out-alt"></i> Signt Out</a>
+                                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                            @csrf
+                                                        </form>
+                                                    </li>
                                                 </ul>
-                                            </li>  --}}
+                                            </li> 
                                             @endauth	
                                             @guest
-                                            {{--  <li class="nav-item">
-                                                <a class="nav-link" href="/login">{{ __('Login') }}</a>
-                                            </li>  --}}
+                                             <li class="nav-item">
+                                                <a class="nav-link" href="/login">{{ __('Sign In') }}</a>
+                                            </li> 
                                             @endguest												
                                         </ul>	
                                         <!-- Right Bar -->

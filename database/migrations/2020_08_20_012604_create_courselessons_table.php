@@ -22,7 +22,7 @@ class CreateCourselessonsTable extends Migration
             $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->string('video')->nullable();
-            $table->softDeletes;
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('courselevelclassinstructur_id')->references('id')->on('courselevelclassinstructurs')->onDelete('restrict');

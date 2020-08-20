@@ -28,6 +28,12 @@ Route::group(['layout' => 'frontend.templates.default'], function () {
     });
 });
 
+Route::group(['middleware' => 'guest'], function(){
+    //login page
+    Route::livewire('/login', 'backend.admin.login')->layout('layouts.auth')->name('backend.login');
+    //logout page
+    Route::livewire('/logout', 'backend.admin.logout')->layout('layouts.backend')->name('backend.logout');
+});
 
 Auth::routes();
 

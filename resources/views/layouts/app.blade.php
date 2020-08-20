@@ -151,6 +151,7 @@
                                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span> E-Learning </span></a>
                                 <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{route('admin.levelclass.index')}}">Level Class</a></li>
+                                <li><a class="nav-link" href="{{route('admin.department.index')}}">Dapartment</a></li>
                                 <li><a class="nav-link" href="layout-transparent.html">Course</a></li>
                                 <li><a class="nav-link" href="layout-top-navigation.html">Section</a></li>
                                 <li><a class="nav-link" href="layout-top-navigation.html">Lesson</a></li>

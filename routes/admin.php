@@ -40,6 +40,9 @@ use Illuminate\Support\Facades\Route;
 
         //Level Class
         Route::resource('/levelclass', 'LevelclassController');
+
+        //Level Class
+        Route::resource('/department', 'DepartmentController');
         
         //Instructur Class
         Route::resource('/instructur', 'InstructurController');

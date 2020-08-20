@@ -26,7 +26,8 @@
     <!-- Icofont CSS -->
     <link rel="stylesheet" href="{{ asset('/assets/kz/css/icofont.css') }}">
     <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="{{ asset('/assets/kz/css/font-awesome.min.css') }}">
+    {{-- <link rel="stylesheet" hrf="{{ asset('/assets/kz/css/font-awesome.min.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/kz/vendor/fontawesome/css/all.min.css') }}">
     <!-- Jquery Ui CSS -->
     <link rel="stylesheet" href="{{ asset('/assets/kz/css/jquery-ui.css') }}">
     <!-- Flex Slider CSS -->

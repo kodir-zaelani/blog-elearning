@@ -17,6 +17,7 @@ class CreateTypecoursesTable extends Migration
             $table->id();
             $table->string('title_id');
             $table->string('title_en');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
