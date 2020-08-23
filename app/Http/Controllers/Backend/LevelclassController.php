@@ -26,7 +26,7 @@ class LevelclassController extends Controller
      */
     public function index()
     {
-        $levelclasses = Levelclass::orderBy('id','ASC')->when(request()->q, function($levelclasses) {
+        $levelclasses = Levelclass::orderBy('id','asc')->when(request()->q, function($levelclasses) {
             $levelclasses = $levelclasses->where('title', 'like', '%'. request()->q . '%');
         })->paginate(10);
 

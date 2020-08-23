@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use PhpParser\Node\Expr\FuncCall;
 
 class Classroom extends Model
 {
@@ -22,5 +21,10 @@ class Classroom extends Model
     {
         return $this->belongsTo(Department::class);
 
+    }
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
     }
 }

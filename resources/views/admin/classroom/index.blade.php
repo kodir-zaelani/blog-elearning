@@ -1,31 +1,31 @@
 @extends('admin.templates.default')
-@section("title")Level Class @endsection
+@section("title")Classroom @endsection
 
 @section('content')
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Level Class</h1>
+            <h1>Classroom</h1>
         </div>
 
         <div class="section-body">
 
             <div class="card">
                 <div class="card-header">
-                    <h4><i class="fas fa-folder"></i> Level Class</h4>
+                    <h4><i class="fas fa-book-open"></i> Classroom</h4>
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.levelclass.index') }}" method="GET">
+                    <form action="{{ route('admin.classroom.index') }}" method="GET">
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                @can('levelclasses.create')
+                                @can('classrooms.create')
                                     <div class="input-group-prepend">
-                                        <a href="{{ route('admin.levelclass.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
+                                        <a href="{{ route('admin.classroom.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
                                     </div>
                                 @endcan
                                 <input type="text" class="form-control" name="q"
-                                       placeholder="cari berdasarkan nama kategori">
+                                       placeholder="cari berdasarkan judul berita">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> CARI
                                     </button>
@@ -33,36 +33,73 @@
                             </div>
                         </div>
                     </form>
+                    
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>LEVEL CLASS</label>
+                                    <select class="form-control select-category @error('category_id') is-invalid @enderror" name="category_id">
+                                        <option value="">-- SELECT --</option>
+                                        @foreach ($levelclasses as $levelclass)
+                                            <option value="{{ $levelclass->id }}">{{ $levelclass->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('levelclass_id')
+                                    <div class="invalid-feedback" style="display: block">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col">
+                                        <div class="form-group">
+                                            <label>DEPARTMENT</label>
+                                            <select class="form-control select-category @error('category_id') is-invalid @enderror" name="category_id">
+                                                <option value="">-- SELECT --</option>
+                                                @foreach ($departments as $department)
+                                                    <option value="{{ $department->id }}">{{ $department->title_id }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('department_id')
+                                            <div class="invalid-feedback" style="display: block">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+
+                            </div>
+                        </div>
+                       
+
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
-                                <th scope="col">LEVEL KELAS</th>
-                                <th scope="col">ALPHABET</th>
+                                <th scope="col">NAMA ROMBEL</th>
+                                <th scope="col">KATEGORI</th>
+                                <th scope="col">STATUS</th>
                                 <th scope="col" style="width: 15%;text-align: center">AKSI</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($levelclasses as $no => $levelclass)
+                            @foreach ($classrooms as $no => $classroom)
                                 <tr>
-                                    <th scope="row" style="text-align: center">{{ ++$no + ($levelclasses->currentPage()-1) * $levelclasses->perPage() }}</th>
-                                    <td>{{ $levelclass->title }}</td>
-                                    <td>
-                                        {{ $levelclass->idalphabet }}<br/>
-                                        <small><em>{{ $levelclass->enalphabet }}</em></small>
-                                    </td>
+                                    <th scope="row" style="text-align: center">{{ ++$no + ($classrooms->currentPage()-1) * $classrooms->perPage() }}</th>
+                                    <td>{{ $classroom->title }}</td>
+                                    <td>{{ $classroom->levelclass->name }}</td>
+                                    <td>{!! $classroom->status_label !!}</td>
                                     <td class="text-center">
-                                        @can('levelclasses.edit')
-                                            <a href="{{ route('admin.levelclass.edit', $levelclass->id) }}" class="btn btn-sm btn-primary">
+                                        @can('classrooms.edit')
+                                            <a href="{{ route('admin.classroom.edit', $classroom->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
                                         @endcan
-                                        
-                                        @can('levelclasses.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $levelclass->id }}">
+
+                                        @can('classrooms.delete')
+                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $classroom->id }}">
                                                 <i class="fa fa-trash"></i>
-                                            </button>  
+                                            </button>
                                         @endcan
                                     </td>
                                 </tr>
@@ -70,7 +107,7 @@
                             </tbody>
                         </table>
                         <div style="text-align: center">
-                            {{$levelclasses->links("vendor.pagination.bootstrap-4")}}
+                            {{$classrooms->links("vendor.pagination.bootstrap-4")}}
                         </div>
                     </div>
                 </div>
@@ -99,9 +136,10 @@
             }).then(function(isConfirm) {
                 if (isConfirm) {
 
+
                     //ajax delete
                     jQuery.ajax({
-                        url: "{{ route("admin.levelclass.index") }}/"+id,
+                        url: "{{ route("admin.classroom.index") }}/"+id,
                         data:     {
                             "id": id,
                             "_token": token
@@ -142,5 +180,4 @@
             })
         }
 </script>
-
 @stop
