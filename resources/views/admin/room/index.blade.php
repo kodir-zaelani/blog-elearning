@@ -1,27 +1,27 @@
 @extends('admin.templates.default')
-@section("title")Categories @endsection
+@section("title")Room @endsection
 
 @section('content')
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Kategori</h1>
+            <h1>Room</h1>
         </div>
 
         <div class="section-body">
 
             <div class="card">
                 <div class="card-header">
-                    <h4><i class="fas fa-folder"></i> Kategori</h4>
+                    <h4><i class="fas fa-folder"></i> Room</h4>
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.category.index') }}" method="GET">
+                    <form action="{{ route('admin.room.index') }}" method="GET">
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                @can('categories.create')
+                                @can('rooms.create')
                                     <div class="input-group-prepend">
-                                        <a href="{{ route('admin.category.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
+                                        <a href="{{ route('admin.room.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
                                     </div>
                                 @endcan
                                 <input type="text" class="form-control" name="q"
@@ -38,26 +38,24 @@
                             <thead>
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
-                                <th scope="col">NAMA KATEGORI</th>
-                                <th scope="col">QR Code</th>
+                                <th scope="col">RUANGAN</th>
                                 <th scope="col" style="width: 15%;text-align: center">AKSI</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($categories as $no => $category)
+                            @foreach ($rooms as $no => $room)
                                 <tr>
-                                    <th scope="row" style="text-align: center">{{ ++$no + ($categories->currentPage()-1) * $categories->perPage() }}</th>
-                                    <td>{{ $category->title }}</td>
-                                    <td>{!! QrCode::generate($category->title); !!}</td>
+                                    <th scope="row" style="text-align: center">{{ ++$no + ($rooms->currentPage()-1) * $rooms->perPage() }}</th>
+                                    <td>{{ $room->title }}</td>
                                     <td class="text-center">
-                                        @can('categories.edit')
-                                            <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-sm btn-primary">
+                                        @can('rooms.edit')
+                                            <a href="{{ route('admin.room.edit', $room->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
                                         @endcan
                                         
-                                        @can('categories.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $category->id }}">
+                                        @can('rooms.delete')
+                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $room->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>  
                                         @endcan
@@ -67,7 +65,7 @@
                             </tbody>
                         </table>
                         <div style="text-align: center">
-                            {{$categories->links("vendor.pagination.bootstrap-4")}}
+                            {{$rooms->links("vendor.pagination.bootstrap-4")}}
                         </div>
                     </div>
                 </div>
@@ -98,7 +96,7 @@
 
                     //ajax delete
                     jQuery.ajax({
-                        url: "{{ route("admin.category.index") }}/"+id,
+                        url: "{{ route("admin.room.index") }}/"+id,
                         data:     {
                             "id": id,
                             "_token": token

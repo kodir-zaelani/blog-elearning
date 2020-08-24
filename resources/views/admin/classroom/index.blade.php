@@ -17,29 +17,14 @@
 
                 <div class="card-body">
                     <form action="{{ route('admin.classroom.index') }}" method="GET">
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                @can('classrooms.create')
-                                    <div class="input-group-prepend">
-                                        <a href="{{ route('admin.classroom.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
-                                    </div>
-                                @endcan
-                                <input type="text" class="form-control" name="q"
-                                       placeholder="cari berdasarkan judul berita">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> CARI
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    
                         <div class="row">
-                            <div class="col">
+                            <div class="col-md-2">
+                                <a href="{{ route('admin.classroom.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
+                            </div>
+                            <div class="col-md-2">
                                 <div class="form-group">
-                                    <label>LEVEL CLASS</label>
-                                    <select class="form-control select-category @error('category_id') is-invalid @enderror" name="category_id">
-                                        <option value="">-- SELECT --</option>
+                                    <select class="form-control select-category @error('levelclass_id') is-invalid @enderror" name="levelclass_id">
+                                        <option value="">LEVEL CLASS</option>
                                         @foreach ($levelclasses as $levelclass)
                                             <option value="{{ $levelclass->id }}">{{ $levelclass->title }}</option>
                                         @endforeach
@@ -51,11 +36,10 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>DEPARTMENT</label>
-                                            <select class="form-control select-category @error('category_id') is-invalid @enderror" name="category_id">
-                                                <option value="">-- SELECT --</option>
+                                            <select class="form-control select-category @error('department_id') is-invalid @enderror" name="department_id">
+                                                <option value="">-- SELECT DEPARTMENT --</option>
                                                 @foreach ($departments as $department)
                                                     <option value="{{ $department->id }}">{{ $department->title_id }}</option>
                                                 @endforeach
@@ -68,7 +52,13 @@
                                         </div>
 
                             </div>
+                            <div class="col-md-1"><button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> FILTER
+                            </button></div>
+                            
                         </div>
+                    </form>
+                    
+                        
                        
 
                     <div class="table-responsive">
@@ -77,8 +67,7 @@
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
                                 <th scope="col">NAMA ROMBEL</th>
-                                <th scope="col">KATEGORI</th>
-                                <th scope="col">STATUS</th>
+                                <th scope="col">KODE ROMBEL</th>
                                 <th scope="col" style="width: 15%;text-align: center">AKSI</th>
                             </tr>
                             </thead>
@@ -86,9 +75,8 @@
                             @foreach ($classrooms as $no => $classroom)
                                 <tr>
                                     <th scope="row" style="text-align: center">{{ ++$no + ($classrooms->currentPage()-1) * $classrooms->perPage() }}</th>
-                                    <td>{{ $classroom->title }}</td>
-                                    <td>{{ $classroom->levelclass->name }}</td>
-                                    <td>{!! $classroom->status_label !!}</td>
+                                    <td>{{ $classroom->levelclass->title }}-{{ $classroom->department->title_id }}-{{ $classroom->room->title }}</td>
+                                    <td>{{ $classroom->slug }}</td>
                                     <td class="text-center">
                                         @can('classrooms.edit')
                                             <a href="{{ route('admin.classroom.edit', $classroom->id) }}" class="btn btn-sm btn-primary">

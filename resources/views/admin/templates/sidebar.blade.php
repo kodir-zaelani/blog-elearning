@@ -102,6 +102,10 @@
                         <li><a class="nav-link" href="{{route('admin.department.index')}}">Dapartment</a></li>
                     @endcan
 
+                    @can('rooms.index')
+                        <li><a class="nav-link" href="{{route('admin.room.index')}}">Room</a></li>
+                    @endcan
+
                     @can('classrooms.index')
                         <li><a class="nav-link" href="{{route('admin.classroom.index')}}">Classroom</a></li>
                     @endcan

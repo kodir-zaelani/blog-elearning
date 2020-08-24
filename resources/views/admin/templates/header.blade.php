@@ -1,3 +1,6 @@
+@php
+$currentUser = Auth::user()
+@endphp
 <div class="navbar-bg"></div>
             <nav class="navbar navbar-expand-lg main-navbar">
                 <form class="form-inline mr-auto">

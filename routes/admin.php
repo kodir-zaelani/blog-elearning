@@ -67,4 +67,7 @@ use Illuminate\Support\Facades\Route;
 
         //Todotask Class
         Route::resource('/todotask', 'TodotaskController');
+
+        //Todotask Class
+        Route::resource('/room', 'RoomController');
         

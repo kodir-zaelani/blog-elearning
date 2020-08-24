@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Typecourse;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TypecourseController extends Controller
 {
@@ -30,7 +31,17 @@ class TypecourseController extends Controller
             $typecourses = $typecourses->where('title', 'like', '%'. request()->q . '%');
         })->paginate(10);
 
-        return view('admin.typecourse.index', compact('typecourse'));
+        return view('admin.typecourse.index', compact('typecourses'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('admin.typecourse.create');
     }
 
      /**
@@ -42,12 +53,14 @@ class TypecourseController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|unique:categories'
+            'title_id' => 'required|unique:typecourses',
+            'title_en' => 'required|unique:typecourses'
         ]);
 
         $typecourse = Typecourse::create([
-            'title' => $request->input('title'),
-            'slug' => Str::slug($request->input('title'), '-') 
+            'title_id' => $request->input('title_id'),
+            'title_en' => $request->input('title_en'),
+            'slug' => Str::random(6) 
         ]);
 
         if($typecourse){
@@ -56,6 +69,71 @@ class TypecourseController extends Controller
         }else{
             //redirect dengan pesan error
             return redirect()->route('admin.typecourse.index')->with(['error' => 'Data Gagal Disimpan!']);
+        }
+    }
+
+    
+    
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function edit(Typecourse $typecourse)
+    {
+        return view('admin.categories.edit', compact('typecourse'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Typecourse $typecourse)
+    {
+        $this->validate($request, [
+            'title_id' => 'required|unique:categories,title_id,'.$typecourse->id,
+            'title_en' => 'required|unique:categories,title_en,'.$typecourse->id
+        ]);
+
+        $typecourse = Typecourse::findOrFail($typecourse->id);
+        $typecourse->update([
+            'title_id' => $request->input('title_id'),
+            'title_en' => $request->input('title_en'),
+        ]);
+
+        if($typecourse){
+            //redirect dengan pesan sukses
+            return redirect()->route('admin.typecourse.index')->with(['success' => 'Data Berhasil Diupdate!']);
+        }else{
+            //redirect dengan pesan error
+            return redirect()->route('admin.typecourse.index')->with(['error' => 'Data Gagal Diupdate!']);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $typecourse = Typecourse::findOrFail($id);
+        $typecourse->delete();
+
+        if($typecourse){
+            return response()->json([
+                'status' => 'success'
+            ]);
+        }else{
+            return response()->json([
+                'status' => 'error'
+            ]);
         }
     }
 }
