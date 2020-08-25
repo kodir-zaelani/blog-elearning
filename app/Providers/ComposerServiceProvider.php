@@ -19,6 +19,7 @@ class ComposerServiceProvider extends ServiceProvider
         //view()->composer('frontend.sikka.sidebarpostdetail', NavigationComposer::class);
         view()->composer('livewire.frontend.main.sidebar', NavigationComposer::class);
         view()->composer('livewire.frontend.main.footer', NavigationComposer::class);
+        view()->composer('admin.templates.sidebar', NavigationComposer::class);
         
         // disini isi service helper filter category dipindah ke file App\Views\NavigationComposer agar lebih rapih
         

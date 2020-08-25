@@ -42,6 +42,7 @@
     <script src="{{ asset('assets/admin/modules/popper.js') }}"></script>
     <script src="{{ asset('assets/admin/modules/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/admin/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="{{ asset('assets/admin/js/stisla.js') }}"></script>
     <script src="{{ asset('assets/admin/modules/select2/dist/js/select2.full.min.js') }}"></script>
 

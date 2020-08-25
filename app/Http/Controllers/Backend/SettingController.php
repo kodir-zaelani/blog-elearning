@@ -6,9 +6,12 @@ use App\Models\Setting;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// upload image thumnail
+use Intervention\Image\Facades\Image;
 
 class SettingController extends Controller
 {
+    protected $uploadPath;
     /**
      * __construct
      *
@@ -17,6 +20,7 @@ class SettingController extends Controller
     public function __construct()
     {
         $this->middleware(['permission:settings.index|settings.create|settings.edit|settings.delete']);
+        $this->uploadPath = public_path(config('cms.image.directoryPhotos'));
     }
 
     /**
@@ -26,9 +30,7 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $settings = Setting::orderBy('id','ASC')->when(request()->q, function($settings) {
-            $settings = $settings->where('title', 'like', '%'. request()->q . '%');
-        })->paginate(10);
+        $settings = Setting::orderBy('id','asc')->get();
 
         return view('admin.setting.index', compact('settings'));
     }
@@ -52,12 +54,72 @@ class SettingController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|unique:settings'
+            'title' => 'required|unique:settings',
+            'description' => 'required',
+            'logo'  => 'required|image|mimes:jpeg,jpg,png|max:1000',
+            'favicon'  => 'required|image|mimes:jpeg,jpg,png|max:1000',
+            'url' => 'required|unique:settings'
         ]);
+
+
+        //upload image (cara kedua)
+        if ($request->has('logo')) {
+            # upload with image
+            $image = $request->file('logo');
+            $fileName = time().$image->getClientOriginalName();
+           
+            $destination = $this->uploadPath;
+            
+            $successUploaded = $image->move($destination, $fileName);
+            
+            if ($successUploaded) {
+                # script dibawah koneksi ke file App\config\cms.php
+                $width = config('cms.image.thumbnailphoto.width');
+                $height = config('cms.image.thumbnailphoto.height');
+                $extension = $image->getClientOriginalExtension();
+                $thumbnail = str_replace(".{$extension}", "_thumb.{$extension}", $fileName);
+                
+                image::make($destination . '/' . $fileName)
+                ->resize($width, $height)
+                ->save($destination . '/' . $thumbnail);
+            }
+
+            // Tampung isi image ke variable data
+            $logo_data = $fileName;
+        }
+
+        if ($request->has('favicon')) {
+            # upload with image
+            $image = $request->file('favicon');
+            $fileName = time().$image->getClientOriginalName();
+           
+            $destination = $this->uploadPath;
+            
+            $successUploaded = $image->move($destination, $fileName);
+            
+            if ($successUploaded) {
+                # script dibawah koneksi ke file App\config\cms.php
+                $width = config('cms.image.thumbnailphoto.width');
+                $height = config('cms.image.thumbnailphoto.height');
+                $extension = $image->getClientOriginalExtension();
+                $thumbnail = str_replace(".{$extension}", "_thumb.{$extension}", $fileName);
+                
+                image::make($destination . '/' . $fileName)
+                ->resize($width, $height)
+                ->save($destination . '/' . $thumbnail);
+            }
+
+            // Tampung isi image ke variable data
+            $favicon_data = $fileName;
+        }
 
         $setting = Setting::create([
             'title' => $request->input('title'),
-            'slug' => Str::random(6) 
+            'description' => $request->input('description'),
+            'url' => $request->input('url'),
+            'logo' => $logo_data,
+            'favicon' => $favicon_data
+            // 'slug' => Str::random(6) 
         ]);
 
         if($setting){
@@ -75,8 +137,9 @@ class SettingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Setting $setting)
+    public function edit($id)
     {
+        $setting = Setting::findorfail($id);
         return view('admin.setting.edit', compact('setting'));
     }
 
@@ -87,16 +150,87 @@ class SettingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Setting $setting)
+    public function update(Request $request, $id)
     {
+
         $this->validate($request, [
-            'title' => 'required|unique:setting,title,'.$setting->id
+            'title' => 'required',
+            'email' => 'required|email',
+            'description' => 'required',
+            'url' => 'required'
         ]);
 
-        $setting = Setting::findOrFail($setting->id);
-        $setting->update([
-            'title' => $request->input('title'),
-        ]);
+        $setting = Setting::findorFail($id);
+        
+        //cek gambar lama
+        $oldImage = $setting->image;
+
+        //upload image (cara kedua)
+        if ($request->has('logo')) {
+            # upload with image
+            $image = $request->file('logo');
+            $fileName = time().$image->getClientOriginalName();
+           
+            $destination = $this->uploadPath;
+            
+            $successUploaded = $image->move($destination, $fileName);
+            
+            if ($successUploaded) {
+                # script dibawah koneksi ke file App\config\cms.php
+                $width = config('cms.image.thumbnailphoto.width');
+                $height = config('cms.image.thumbnailphoto.height');
+                $extension = $image->getClientOriginalExtension();
+                $thumbnail = str_replace(".{$extension}", "_thumb.{$extension}", $fileName);
+                
+                image::make($destination . '/' . $fileName)
+                ->resize($width, $height)
+                ->save($destination . '/' . $thumbnail);
+            }
+
+            // Tampung isi image ke variable data
+            $logo_data = $fileName;
+
+            $setting_data = [
+                'title' => $request->input('title'),
+                'description' => $request->input('description'),
+                'url' => $request->input('url'),
+                'email' => $request->input('email'),
+                'no_hp' => $request->input('no_hp'),
+                'no_wa' => $request->input('no_wa'),
+                'facebook' => $request->input('facebook'),
+                'instagram' => $request->input('instagram'),
+                'twitter' => $request->input('twitter'),
+                'youtube' => $request->input('youtube'),
+                'seo' => $request->input('seo'),
+                'keywords' => $request->input('keywords'),
+                'googleanalytics' => $request->input('googleanalytics'),
+                'logo' => $logo_data,
+            ];
+        }
+        else {
+            $setting_data = [
+                'title' => $request->input('title'),
+                'description' => $request->input('description'),
+                'url' => $request->input('url'),
+                'email' => $request->input('email'),
+                'no_hp' => $request->input('no_hp'),
+                'no_wa' => $request->input('no_wa'),
+                'facebook' => $request->input('facebook'),
+                'instagram' => $request->input('instagram'),
+                'twitter' => $request->input('twitter'),
+                'youtube' => $request->input('youtube'),
+                'seo' => $request->input('seo'),
+                'keywords' => $request->input('keywords'),
+                'googleanalytics' => $request->input('googleanalytics'),
+            ];
+        }
+
+        $setting->update($setting_data);
+
+        // Jika gambar lama ada maka lakukan hapus gambar
+        if ($oldImage !== $setting->image) {
+            $this->removeImage($oldImage);
+            }
 
         if($setting){
             //redirect dengan pesan sukses
@@ -126,6 +260,21 @@ class SettingController extends Controller
             return response()->json([
                 'status' => 'error'
             ]);
+        }
+    }
+
+    // fucntion remove image
+    private function removeImage($image)
+    {
+        if ( ! empty($image) )
+        {
+            $imagePath     = $this->uploadPath . '/' . $image;
+            $ext           = substr(strrchr($image, '.'), 1);
+            $thumbnail     = str_replace(".{$ext}", "_thumb.{$ext}", $image);
+            $thumbnailPath = $this->uploadPath . '/' . $thumbnail;
+            
+            if ( file_exists($imagePath) ) unlink($imagePath);
+            if ( file_exists($thumbnailPath) ) unlink($thumbnailPath);
         }
     }
 }

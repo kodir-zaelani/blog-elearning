@@ -129,7 +129,7 @@
             @endif
             @can('settings.index')
             <li class="{{ setActive('admin/setting')}}">
-                <a class="nav-link" href="{{ route('admin.setting.index') }}"><i class="fas fa-fire"></i> <span>General</span></a>
+                <a class="nav-link" href="{{ route('admin.setting.index') }}"><i class="fas fa-fire"></i> <span>Setting Website</span></a>
             </li>
             @endcan
 

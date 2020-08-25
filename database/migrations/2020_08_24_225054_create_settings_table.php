@@ -21,7 +21,6 @@ class CreateSettingsTable extends Migration
             $table->string('email')->unique();
             $table->string('no_hp',15)->nullable();
             $table->string('no_wa',15)->nullable();
-            $table->string('avatar')->nullable();
             $table->string('seo')->nullable();
             $table->string('keywords')->nullable();
             $table->string('logo')->nullable();

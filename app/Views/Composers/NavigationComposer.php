@@ -4,6 +4,7 @@ namespace App\Views\Composers;
 use Illuminate\View\View;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Setting;
 use App\Models\Tag;
 
 class NavigationComposer
@@ -20,6 +21,14 @@ class NavigationComposer
         
         $this->composeArchives($view);
 
+        $this->composeSetting($view);
+
+    }
+
+    private function composeSetting(View $view)
+    {
+        $settings =  Setting::orderBy('title', 'asc')->get();
+        $view->with('settings', $settings);
     }
 
     private function composePopularPost(View $view)

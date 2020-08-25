@@ -18,9 +18,11 @@
                 <div class="card-body">
                     <form action="{{ route('admin.classroom.index') }}" method="GET">
                         <div class="row">
+                            @can('classrooms.create')
                             <div class="col-md-2">
                                 <a href="{{ route('admin.classroom.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
                             </div>
+                            @endcan
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <select class="form-control select-category @error('levelclass_id') is-invalid @enderror" name="levelclass_id">

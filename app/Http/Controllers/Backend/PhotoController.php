@@ -61,7 +61,7 @@ class PhotoController extends Controller
             $successUploaded = $image->move($destination, $fileName);
             
             if ($successUploaded) {
-                # script dibawah koneksi ke file App\confog\cms.php
+                # script dibawah koneksi ke file App\config\cms.php
                 $width = config('cms.image.thumbnailphoto.width');
                 $height = config('cms.image.thumbnailphoto.height');
                 $extension = $image->getClientOriginalExtension();
