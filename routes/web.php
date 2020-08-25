@@ -14,6 +14,7 @@ Route::group(['layout' => 'frontend.templates.default'], function () {
     Route::livewire('/category/{slug}', 'frontend.category.show')->name('category.show');
     Route::livewire('/author/{slug}', 'frontend.author.show')->name('author.show');
     Route::livewire('/tag/{slug}', 'frontend.tag.show')->name('tag.show');
+    Route::livewire('/event/{slug}', 'frontend.event.show')->name('event.show');
     
     Route::prefix('post')->group(function () {
         Route::livewire('/all', 'frontend.post.all')->name('post.all');

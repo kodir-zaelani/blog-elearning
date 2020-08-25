@@ -132,6 +132,36 @@
                                             <input type="text" readonly name="no_wa" value="{{ old('no_wa', $setting->no_wa) }}" class="form-control ">
                                         </div>
                                     </div>
+                                    <div class="form-group row align-items-center">
+                                        <label for="street" class="form-control-label col-sm-3 text-md-right">Street</label>
+                                        <div class="col-sm-6 col-md-9">
+                                            <input type="text" readonly name="street" value="{{ old('street', $setting->street) }}" class="form-control ">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row align-items-center">
+                                        <label for="city" class="form-control-label col-sm-3 text-md-right">City</label>
+                                        <div class="col-sm-6 col-md-9">
+                                            <input type="text" readonly name="city" value="{{ old('city', $setting->city) }}" class="form-control ">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row align-items-center">
+                                        <label for="province" class="form-control-label col-sm-3 text-md-right">Province</label>
+                                        <div class="col-sm-6 col-md-9">
+                                            <input type="text" readonly name="province" value="{{ old('province', $setting->province) }}" class="form-control ">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row align-items-center">
+                                        <label for="country" class="form-control-label col-sm-3 text-md-right">Country</label>
+                                        <div class="col-sm-6 col-md-9">
+                                            <input type="text" readonly name="country" value="{{ old('country', $setting->country) }}" class="form-control ">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row align-items-center">
+                                        <label for="postalcode" class="form-control-label col-sm-3 text-md-right">Postal Code</label>
+                                        <div class="col-sm-6 col-md-9">
+                                            <input type="text" readonly name="postalcode" value="{{ old('postalcode', $setting->postalcode) }}" class="form-control ">
+                                        </div>
+                                    </div>
                                     
                                     <div class="form-group row align-items-center">
                                         <label for="facebook" class="form-control-label col-sm-3 text-md-right">Facebook</label>

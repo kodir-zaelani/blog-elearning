@@ -3,6 +3,7 @@ namespace App\Views\Composers;
 
 use Illuminate\View\View;
 use App\Models\Category;
+use App\Models\Event;
 use App\Models\Post;
 use App\Models\Setting;
 use App\Models\Tag;
@@ -22,9 +23,15 @@ class NavigationComposer
         $this->composeArchives($view);
 
         $this->composeSetting($view);
+        $this->composeEvent($view);
 
     }
 
+    private function composeEvent(View $view)
+    {
+        $events =  Event::latest()->get();
+        $view->with('events', $events);
+    }
     private function composeSetting(View $view)
     {
         $settings =  Setting::orderBy('title', 'asc')->get();

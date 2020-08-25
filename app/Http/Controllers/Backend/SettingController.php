@@ -204,6 +204,11 @@ class SettingController extends Controller
                 'seo' => $request->input('seo'),
                 'keywords' => $request->input('keywords'),
                 'googleanalytics' => $request->input('googleanalytics'),
+                'street' => $request->input('street'),
+                'city' => $request->input('city'),
+                'province' => $request->input('province'),
+                'country' => $request->input('country'),
+                'postalcode' => $request->input('postalcode'),
                 'logo' => $logo_data,
             ];
         }
@@ -222,6 +227,11 @@ class SettingController extends Controller
                 'seo' => $request->input('seo'),
                 'keywords' => $request->input('keywords'),
                 'googleanalytics' => $request->input('googleanalytics'),
+                'street' => $request->input('street'),
+                'city' => $request->input('city'),
+                'province' => $request->input('province'),
+                'country' => $request->input('country'),
+                'postalcode' => $request->input('postalcode'),
             ];
         }
 

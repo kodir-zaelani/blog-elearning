@@ -67,83 +67,6 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="no_hp" >No. Handphone</label>
-                                    <input type="text"  name="no_hp" value="{{ old('no_hp', $setting->no_hp) }}" class="form-control @error('no_hp') is-invalid @enderror" id="no_hp">
-                                    @error('no_hp')
-                                    <div class="invalid-feedback" style="display: block">
-                                        <strong>{{ $message }}</strong>
-                                    </div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="no_wa" >No. Whatapps</label>
-                                    <input type="text"  name="no_wa" value="{{ old('no_wa', $setting->no_wa) }}" class="form-control @error('no_wa') is-invalid @enderror" id="no_wa">
-                                    @error('no_wa')
-                                    <div class="invalid-feedback" style="display: block">
-                                        <strong>{{ $message }}</strong>
-                                    </div>
-                                    @enderror
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="facebook">Facebook</label>
-                                    <input type="text"  name="facebook" value="{{ old('facebook', $setting->facebook) }}" class="form-control @error('facebook') is-invalid @enderror" id="facebook">
-                                    @error('facebook')
-                                    <div class="invalid-feedback" style="display: block">
-                                        <strong>{{ $message }}</strong>
-                                    </div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="instagram">Instagram</label>
-                                    <input type="text"  name="instagram" value="{{ old('instagram', $setting->instagram) }}" class="form-control @error('instagram') is-invalid @enderror" id="instagram">
-                                    @error('instagram')
-                                    <div class="invalid-feedback" style="display: block">
-                                        <strong>{{ $message }}</strong>
-                                    </div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="youtube">Chanel Youtube</label>
-                                    <input type="text"  name="youtube" value="{{ old('youtube', $setting->youtube) }}" class="form-control @error('youtube') is-invalid @enderror" id="youtube">
-                                    @error('youtube')
-                                    <div class="invalid-feedback" style="display: block">
-                                        <strong>{{ $message }}</strong>
-                                    </div>
-                                    @enderror
-                                </div>
-                            
-                                <div class="form-group">
-                                <label>Site Logo</label> <br/>
-                                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                                    <div class="fileinput-new img-thumbnail" style="width: 200px;">
-                                        <img src="{{ ($setting->logoUrl) ? $setting->logoUrl : '/assets/admin/img/no_image.png' }}"  alt="...">
-                                    </div>
-                                    <div class="fileinput-preview fileinput-exists img-thumbnail" style="max-width: 200px;"></div>
-                                    <div>
-                                    <span class="btn btn-outline-secondary btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>
-                                    <input type="file" class="@error('logo') is-invalid @enderror" name="logo" value="{{ old('logo') }}"></span>
-                                    <a href="#" class="btn btn-outline-secondary fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                    </div>
-                                </div>
-                                </div>
-                           
-                                <div class="form-group">
-                                <label>Favicon</label> <br/>
-                                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                                    <div class="fileinput-new img-thumbnail" style="width: 200px;">
-                                        <img src="{{ ($setting->faviconUrl) ? $setting->faviconUrl : '/assets/admin/img/no_image.png' }}"  alt="...">
-                                    </div>
-                                    <div class="fileinput-preview fileinput-exists img-thumbnail" style="max-width: 200px;"></div>
-                                    <div>
-                                    <span class="btn btn-outline-secondary btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>
-                                    <input type="file" class="@error('favicon') is-invalid @enderror" name="favicon" value="{{ old('favicon') }}"></span>
-                                    <a href="#" class="btn btn-outline-secondary fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                    </div>
-                                </div>
-                                </div>
-                          
-                                <div class="form-group">
                                     <label for="seo" >SEO</label>
                                     <input type="text"  name="seo" value="{{ old('seo', $setting->seo) }}" class="form-control @error('seo') is-invalid @enderror" id="seo">
                                     @error('seo')
@@ -172,6 +95,139 @@
                                     </div>
                                     @enderror
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="no_hp" >No. Handphone</label>
+                                            <input type="text"  name="no_hp" value="{{ old('no_hp', $setting->no_hp) }}" class="form-control @error('no_hp') is-invalid @enderror" id="no_hp">
+                                            @error('no_hp')
+                                            <div class="invalid-feedback" style="display: block">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="no_wa" >No. Whatapps</label>
+                                            <input type="text"  name="no_wa" value="{{ old('no_wa', $setting->no_wa) }}" class="form-control @error('no_wa') is-invalid @enderror" id="no_wa">
+                                            @error('no_wa')
+                                            <div class="invalid-feedback" style="display: block">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                            </div>
+                                <div class="form-group">
+                                    <label for="facebook">Facebook</label>
+                                    <input type="text"  name="facebook" value="{{ old('facebook', $setting->facebook) }}" class="form-control @error('facebook') is-invalid @enderror" id="facebook">
+                                    @error('facebook')
+                                    <div class="invalid-feedback" style="display: block">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="instagram">Instagram</label>
+                                    <input type="text"  name="instagram" value="{{ old('instagram', $setting->instagram) }}" class="form-control @error('instagram') is-invalid @enderror" id="instagram">
+                                    @error('instagram')
+                                    <div class="invalid-feedback" style="display: block">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="youtube">Chanel Youtube</label>
+                                    <input type="text"  name="youtube" value="{{ old('youtube', $setting->youtube) }}" class="form-control @error('youtube') is-invalid @enderror" id="youtube">
+                                    @error('youtube')
+                                    <div class="invalid-feedback" style="display: block">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="street">Street</label>
+                                    <input type="text"  name="street" value="{{ old('street', $setting->street) }}" class="form-control @error('street') is-invalid @enderror" id="street">
+                                    @error('street')
+                                    <div class="invalid-feedback" style="display: block">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">City</label>
+                                    <input type="text"  name="city" value="{{ old('city', $setting->city) }}" class="form-control @error('city') is-invalid @enderror" id="city">
+                                    @error('city')
+                                    <div class="invalid-feedback" style="display: block">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="province">Province</label>
+                                    <input type="text"  name="province" value="{{ old('province', $setting->province) }}" class="form-control @error('province') is-invalid @enderror" id="province">
+                                    @error('province')
+                                    <div class="invalid-feedback" style="display: block">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="country">Country</label>
+                                    <input type="text"  name="country" value="{{ old('country', $setting->country) }}" class="form-control @error('country') is-invalid @enderror" id="country">
+                                    @error('country')
+                                    <div class="invalid-feedback" style="display: block">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="postalcode">Postal Code</label>
+                                    <input type="text"  name="postalcode" value="{{ old('postalcode', $setting->postalcode) }}" class="form-control @error('postalcode') is-invalid @enderror" id="postalcode">
+                                    @error('postalcode')
+                                    <div class="invalid-feedback" style="display: block">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                <div class="form-group">
+                                <label>Site Logo</label> <br/>
+                                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                    <div class="fileinput-new img-thumbnail" style="width: 200px;">
+                                        <img src="{{ ($setting->logoUrl) ? $setting->logoUrl : '/assets/admin/img/no_image.png' }}"  alt="...">
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists img-thumbnail" style="max-width: 200px;"></div>
+                                    <div>
+                                    <span class="btn btn-outline-secondary btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>
+                                    <input type="file" class="@error('logo') is-invalid @enderror" name="logo" value="{{ old('logo') }}"></span>
+                                    <a href="#" class="btn btn-outline-secondary fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                    </div>
+                                </div>
+                                </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Favicon</label> <br/>
+                                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                            <div class="fileinput-new img-thumbnail" style="width: 200px;">
+                                                <img src="{{ ($setting->faviconUrl) ? $setting->faviconUrl : '/assets/admin/img/no_image.png' }}"  alt="...">
+                                            </div>
+                                            <div class="fileinput-preview fileinput-exists img-thumbnail" style="max-width: 200px;"></div>
+                                            <div>
+                                            <span class="btn btn-outline-secondary btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>
+                                            <input type="file" class="@error('favicon') is-invalid @enderror" name="favicon" value="{{ old('favicon') }}"></span>
+                                            <a href="#" class="btn btn-outline-secondary fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                </div> 
+                            </div>
+                           
+                          
+                                
                             </div>
                             <div class="card-footer">
                                 <button class="btn btn-primary mr-1 btn-submit" type="submit"><i class="fa fa-paper-plane"></i> Update</button>

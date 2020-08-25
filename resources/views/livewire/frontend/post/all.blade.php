@@ -73,7 +73,7 @@
                     </div>	
                 </div>
                 <div class="col-lg-3 col-12">
-                    <livewire:frontend.main.sidebar />
+                    <livewire:frontend.main.sidebarevent />
                 </div>
             </div>
         </div>

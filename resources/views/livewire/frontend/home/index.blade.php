@@ -11,6 +11,8 @@
 
     <livewire:frontend.course.index />
     
+    <livewire:frontend.event.index />
+    
     <livewire:frontend.portfolio.index />
     
     <livewire:frontend.video.index />
