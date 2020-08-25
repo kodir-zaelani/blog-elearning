@@ -124,9 +124,15 @@
                     </ul>
                 </li>
 
-            @if(auth()->user()->can('roles.index') || auth()->user()->can('permission.index') || auth()->user()->can('users.index'))
-            <li class="menu-header">PENGATURAN</li>
+            @if(auth()->user()->can('roles.index') || auth()->user()->can('permission.index') || auth()->user()->can('users.index')|| auth()->user()->can('settings.index'))
+            <li class="menu-header">SETTING</li>
             @endif
+            @can('settings.index')
+            <li class="{{ setActive('admin/setting')}}">
+                <a class="nav-link" href="{{ route('admin.setting.index') }}"><i class="fas fa-fire"></i> <span>General</span></a>
+            </li>
+            @endcan
+
             <li class="dropdown {{ setActive('admin/role'). setActive('admin/permission'). setActive('admin/user') }}">
                 @if(auth()->user()->can('roles.index') || auth()->user()->can('permission.index') || auth()->user()->can('users.index'))
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-users"></i><span>Users

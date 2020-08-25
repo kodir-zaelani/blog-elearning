@@ -28,7 +28,7 @@ class TypecourseController extends Controller
     public function index()
     {
         $typecourses = Typecourse::latest()->when(request()->q, function($typecourses) {
-            $typecourses = $typecourses->where('title', 'like', '%'. request()->q . '%');
+            $typecourses = $typecourses->where('title_id', 'like', '%'. request()->q . '%');
         })->paginate(10);
 
         return view('admin.typecourse.index', compact('typecourses'));

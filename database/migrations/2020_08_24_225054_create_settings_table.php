@@ -17,7 +17,7 @@ class CreateSettingsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->string('owner')->nullable();
+            $table->string('url')->nullable();
             $table->string('email')->unique();
             $table->string('no_hp',15)->nullable();
             $table->string('no_wa',15)->nullable();
