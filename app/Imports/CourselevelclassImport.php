@@ -2,11 +2,10 @@
 
 namespace App\Imports;
 
-use Illuminate\Support\Str;
 use App\Models\Courselevelclass;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class CourselevleclassesImport implements ToModel
+class CourselevelclassImport implements ToModel
 {
     /**
     * @param array $row
@@ -16,7 +15,7 @@ class CourselevleclassesImport implements ToModel
     public function model(array $row)
     {
         return new Courselevelclass([
-            
+            //
         ]);
     }
 }

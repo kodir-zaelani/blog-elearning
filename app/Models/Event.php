@@ -9,6 +9,11 @@ class Event extends Model
     //mass assignment all field
     protected $guarded = [];
 
+    public function participant()
+    {
+        return $this->hasMany(Participant::class);
+    }
+
     public function getImageUrlAttribute($value)
     {
         $imageUrl = "";

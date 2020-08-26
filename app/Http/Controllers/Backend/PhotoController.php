@@ -74,6 +74,7 @@ class PhotoController extends Controller
 
             // Tampung isi image ke variable data
             $image_data = $fileName;
+            
         }
 
         $photo = Photo::create([
@@ -141,7 +142,7 @@ class PhotoController extends Controller
             // Tampung isi image ke variable data
             $image_data = $fileName;
 
-            $event_data = [
+            $photo_data = [
                 'image'     => $image_data,
                 'caption'   => $request->input('caption'),
                 'album_id'   => $request->input('album_id')
@@ -149,14 +150,14 @@ class PhotoController extends Controller
            
         }
         else {
-            $event_data = [
+            $photo_data = [
                 'caption'   => $request->input('caption'),
                 'album_id'   => $request->input('album_id')
             ];
         }
         
         // update photo
-        $photo->update($event_data);
+        $photo->update($photo_data);
         
           // Jika gambar lama ada maka lakukan hapus gambar
           if ($oldImage !== $photo->image) {

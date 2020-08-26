@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title') &mdash; Widia Wahyuni</title>
+    <title>@yield('title', 'Admin')</title>
+    {{-- <title>@yield('title', 'Admin') &mdash; Widia Wahyuni</title> --}}
     <link rel="shortcut icon" href="{{ asset('assets/admin/img/school.svg') }}" type="image/x-icon">
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/admin/modules/bootstrap/css/bootstrap.min.css') }}">

@@ -1,33 +1,33 @@
 @extends('admin.templates.default')
-@section("title")Events @endsection
+@section('title')Participant 
 
 @section('content')
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Agenda</h1>
+            <h1>Participant</h1>
         </div>
 
         <div class="section-body">
 
             <div class="card">
                 <div class="card-header">
-                    <h4><i class="fas fa-bell"></i> Agenda</h4>
+                    <h4><i class="fas fa-image"></i> Participants</h4>
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.event.index') }}" method="GET">
+                    <form action="{{ route('admin.participant.index') }}" method="GET">
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                @can('events.create')
-                                    <div class="input-group-prepend">
-                                        <a href="{{ route('admin.event.create') }}" class="btn btn-primary" style="padding-top: 10px;" title="Tambah"><i class="fa fa-plus-circle"></i> TAMBAH</a>
-                                    </div>
+                                @can('participants.create')
+                                <div class="input-group-prepend">
+                                    <a href="{{ route('admin.participant.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> Add</a>
+                                </div>
                                 @endcan
                                 <input type="text" class="form-control" name="q"
-                                       placeholder="cari berdasarkan judul agenda">
+                                       placeholder="search participant">
                                 <div class="input-group-append">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> CARI
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> SEARCH
                                     </button>
                                 </div>
                             </div>
@@ -38,31 +38,29 @@
                             <thead>
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
-                                <th scope="col">JUDUL AGENDA</th>
-                                <th scope="col">LOKASI</th>
-                                <th scope="col">TANGGAL</th>
-                                <th scope="col" style="width: 20%;text-align: center">AKSI</th>
+                                <th scope="col">NAMA</th>
+                                <th scope="col">NIK</th>
+                                <th scope="col">EVENT</th>
+                                <th scope="col" style="width: 15%;text-align: center">AKSI</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($events as $no => $event)
+                            @foreach ($participants as $no => $participant)
                                 <tr>
-                                    <th scope="row" style="text-align: center">{{ ++$no + ($events->currentPage()-1) * $events->perPage() }}</th>
-                                    <td>{{ $event->title }}</td>
-                                    <td>{{ $event->location }}</td>
-                                    <td>{{ $event->date }}</td>
+                                    <th scope="row" style="text-align: center">{{ ++$no + ($participants->currentPage()-1) * $participants->perPage() }}</th>
+                                    {{-- <td><img src="{{ Storage::url('public/photos/'.$participant->image) }}" style="width: 150px"></td> --}}
+                                    <td>{{ $participant->name }} </td>
+                                    <td>{{ $participant->nik }}</td>
+                                    <td>{{ $participant->event->title }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin.participant.index', $event->id) }}" class="btn btn-sm btn-warning" title="Participant">
-                                            <i class="fas fa-users"></i>
-                                        </a>
-                                        @can('events.edit')
-                                            <a href="{{ route('admin.event.edit', $event->id) }}" class="btn btn-sm btn-primary" title="Edit">
+                                        @can('participants.edit')
+                                            <a href="{{ route('admin.participant.edit', $participant->id) }}" class="btn btn-sm btn-primary" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
                                         @endcan
 
-                                        @can('events.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $event->id }}" title="delete">
+                                        @can('participants.delete')
+                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $participant->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         @endcan
@@ -72,7 +70,7 @@
                             </tbody>
                         </table>
                         <div style="text-align: center">
-                            {{$events->links("vendor.pagination.bootstrap-4")}}
+                            {{$participants->links("vendor.pagination.bootstrap-4")}}
                         </div>
                     </div>
                 </div>
@@ -101,9 +99,10 @@
             }).then(function(isConfirm) {
                 if (isConfirm) {
 
+
                     //ajax delete
                     jQuery.ajax({
-                        url: "{{ route("admin.event.index") }}/"+id,
+                        url: "{{ route("admin.participant.index") }}/"+id,
                         data:     {
                             "id": id,
                             "_token": token
@@ -144,4 +143,13 @@
             })
         }
 </script>
+@push('page-style')
+<!-- Jasny Bootstrap 4 -->
+<link rel="stylesheet" href="{{ asset('/assets/admin/modules/jasny-bootstrap/4.0.0/css/jasny-bootstrap.min.css')}}">
+@endpush
+@push('page-script')
+<!-- Jasny Bootstrap 4 -->
+<script src="{{ asset('/assets/admin/modules/jasny-bootstrap/4.0.0/js/jasny-bootstrap.min.js')}}"></script>
+
+@endpush
 @stop

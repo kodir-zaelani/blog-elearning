@@ -83,7 +83,13 @@
                     @can('events.index')
                     <li class="{{ setActive('admin/event') }}"><a class="nav-link"
                             href="{{ route('admin.event.index') }}"><i class="fas fa-bell"></i>
-                            <span>Agenda</span></a></li>
+                            <span>Event</span></a></li>
+                    @endcan
+
+                    @can('participants.index')
+                    <li class="{{ setActive('admin/participant') }}"><a class="nav-link"
+                            href="{{ route('admin.participant.index') }}"><i class="fas fa-bell"></i>
+                            <span>Participant</span></a></li>
                     @endcan
                 </ul>
             </li>                    

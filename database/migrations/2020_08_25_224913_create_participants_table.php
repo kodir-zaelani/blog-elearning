@@ -15,24 +15,27 @@ class CreateParticipantsTable extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('event_id')->unsigned();
             $table->string('nik');
             $table->string('name');
             $table->string('slug')->unique();
-            $table->text('birthplace');
-            $table->text('dateofbirth');
-            $table->string('image')->nullable();
-            $table->string('no_hp');
-            $table->string('no_wa');
-            $table->string('email')->unique();
-            $table->string('jabatan_dpc');
+            $table->string('birthplace')->nullable();
+            $table->date('dateofbirth')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('religion')->nullable();
+            $table->string('no_hp')->nullable();
+            $table->string('no_wa')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->string('jabatan_dpc')->nullable();
             $table->boolean('status_dprd')->default(false);
-            $table->string('jabatan_dprd');
-            $table->string('rt');
-            $table->string('district');
-            $table->string('vilage');
-            $table->string('city');
-            $table->string('postalcode');
+            $table->string('jabatan_dprd')->nullable();
+            $table->string('address')->nullable();
+            $table->string('rt')->nullable();
+            $table->string('district')->nullable();
+            $table->string('vilage')->nullable();
+            $table->string('city')->nullable();
+            $table->string('postalcode')->nullable();
+            $table->string('image')->nullable();
+            $table->bigInteger('event_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
 

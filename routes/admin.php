@@ -74,3 +74,11 @@ use Illuminate\Support\Facades\Route;
         //Seting
         Route::resource('/setting', 'SettingController');
         
+        //Participant
+        Route::resource('/participant', 'ParticipantController');
+        
+        //Participant
+        Route::get('/participantevent', 'ParticipantController@event')->name('participant.event');
+
+        // Route::get('/lesson/levelclass', 'LessonController@levelclass')->name('lesson.levelclass');
+        

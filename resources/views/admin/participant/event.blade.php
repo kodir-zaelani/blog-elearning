@@ -5,18 +5,18 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Agenda</h1>
+            <h1>Event</h1>
         </div>
 
         <div class="section-body">
 
             <div class="card">
                 <div class="card-header">
-                    <h4><i class="fas fa-bell"></i> Agenda</h4>
+                    <h4><i class="fas fa-bell"></i> Event</h4>
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.event.index') }}" method="GET">
+                    {{-- <form action="{{ route('admin.event.index') }}" method="GET">
                         <div class="form-group">
                             <div class="input-group mb-3">
                                 @can('events.create')
@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
@@ -52,20 +52,9 @@
                                     <td>{{ $event->location }}</td>
                                     <td>{{ $event->date }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin.participant.index', $event->id) }}" class="btn btn-sm btn-warning" title="Participant">
+                                        <a href="{{ route('admin.participant.index', $event) }}" class="btn btn-sm btn-warning" title="Participant">
                                             <i class="fas fa-users"></i>
                                         </a>
-                                        @can('events.edit')
-                                            <a href="{{ route('admin.event.edit', $event->id) }}" class="btn btn-sm btn-primary" title="Edit">
-                                                <i class="fa fa-pencil-alt"></i>
-                                            </a>
-                                        @endcan
-
-                                        @can('events.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $event->id }}" title="delete">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
