@@ -37,7 +37,7 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th scope="col" style="text-align: center;width: 6%">NO.</th>
+                                {{-- <th scope="col" style="text-align: center;width: 6%">NO.</th> --}}
                                 <th scope="col">JUDUL BERITA</th>
                                 <th scope="col">KATEGORI</th>
                                 <th scope="col">STATUS</th>
@@ -45,9 +45,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($posts as $no => $post)
+                            @foreach ($posts as $post)
+                            {{-- @foreach ($posts as $no => $post) --}}
                                 <tr>
-                                    <th scope="row" style="text-align: center">{{ ++$no + ($posts->currentPage()-1) * $posts->perPage() }}</th>
+                                    {{-- <th scope="row" style="text-align: center">{{ ++$no + ($posts->currentPage()-1) * $posts->perPage() }}</th> --}}
                                     <td>{{ $post->title }}</td>
                                     <td>{{ $post->category->name }}</td>
                                     <td>{!! $post->status_label !!}</td>

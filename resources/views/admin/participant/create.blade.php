@@ -6,6 +6,7 @@
         <section class="section">
             <div class="section-header">
                 <h1>Add Participant</h1>
+                
             </div>
 
             <div class="section-body">
@@ -13,6 +14,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h4><i class="fas fa-bell"></i> Add Participant</h4>
+                        <div class="card-header-action">
+                            <a href="{{ route('admin.participant.index') }}" class="btn btn-info btn-reset">BACK</a>
+                          </div>
                     </div>
                     <div class="card-body">
 
@@ -234,14 +238,14 @@
                                 <label>Status Kenggotaan DPRD</label>
                                 <div class="form-check">
                                   <input class="form-check-input" type="radio" name="status_dprd" 
-                                   value=1 >
+                                   value="Ya" >
                                   <label class="form-check-label" for="status_dprd">
                                     Ya
                                   </label>
                                 </div>
                                 <div class="form-check">
                                   <input class="form-check-input" type="radio" name="status_dprd" 
-                                   value=0  >
+                                   value="Tidak"  >
                                   <label class="form-check-label" for="status_dprd">
                                     Tidak
                                   </label>
@@ -338,11 +342,9 @@
                                 </div>
                             </div>
 
-                            
-
                             <button class="btn btn-primary mr-1 btn-submit" type="submit"><i class="fa fa-upload"></i> SAVE</button>
                             <button class="btn btn-warning btn-reset" type="reset"><i class="fa fa-redo"></i> RESET</button>
-
+                            <a href="{{ route('admin.participant.index') }}" class="btn btn-info btn-reset">BACK</a>
 
                         </form>
 
@@ -352,22 +354,7 @@
         </section>
     </div>
 
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-    <script>
-        var editor_config = {
-            selector: "textarea.description",
-            plugins: [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern"
-            ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
-            relative_urls: false,
-        };
-
-        tinymce.init(editor_config);
-    </script>
+  
     @push('page-style')
     <!-- Jasny Bootstrap 4 -->
     <link rel="stylesheet" href="{{ asset('/assets/admin/modules/jasny-bootstrap/4.0.0/css/jasny-bootstrap.min.css')}}">

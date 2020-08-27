@@ -42,4 +42,26 @@ class Participant extends Model
         
         return $imageUrl;
     }
+
+    public function scopeFilter($query, $filter)
+    {
+               
+        // check if any term entered
+        if (isset($filter['term']) && $term = strtolower($filter['term']))
+        {
+            $query->where(function($q) use ($term) {
+                $q->whereHas('author', function($qr) use ($term) {
+                        $qr->where('name', 'LIKE', "%{$term}%");
+                    });
+                    $q->orWhereHas('category', function($qr) use ($term) {
+                            $qr->where('title', 'LIKE', "%{$term}%");
+                        });
+                        $q->orWhereHas('tags', function($qr) use ($term) {
+                            $qr->where('title', 'LIKE', "%{$term}%");
+                        });
+                        $q->orWhereRaw('LOWER(title) LIKE ?', ["%{$term}%"]);
+                        $q->orWhereRaw('LOWER(content) LIKE ?', ["%{$term}%"]);
+             });
+        }
+    }
 }

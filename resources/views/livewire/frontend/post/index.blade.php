@@ -33,8 +33,8 @@
                         </div>
                         <div class="card-footer">
                             <ul class="blog-meta3">
-                                <li><a href="{{ route('category.show',$post->author->slug) }}"><i class="fa fa-folder"></i>{{ $post->category->title  }}</a></li>
-                                <li><a href="{{ route('tag.show',$post->author->slug) }}"><i class="fa fa-tags"></i>{!! $post->tags_html !!}</a></li>
+                                <li><a href="{{ route('category.show',$post->category->slug) }}"><i class="fa fa-folder"></i>{{ $post->category->title  }}</a></li>
+                                <li><i class="fa fa-tags"></i>{!! $post->tags_html !!}</li>
                             </ul>
                         </div>
                     </div>

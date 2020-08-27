@@ -26,7 +26,7 @@ class CreateParticipantsTable extends Migration
             $table->string('no_wa')->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('jabatan_dpc')->nullable();
-            $table->boolean('status_dprd')->default(false);
+            $table->enum('status_dprd', ['Ya', 'Tidak'])->default('Tidak');
             $table->string('jabatan_dprd')->nullable();
             $table->string('address')->nullable();
             $table->string('rt')->nullable();
@@ -34,6 +34,7 @@ class CreateParticipantsTable extends Migration
             $table->string('vilage')->nullable();
             $table->string('city')->nullable();
             $table->string('postalcode')->nullable();
+            $table->string('statuspeserta')->nullable();
             $table->string('image')->nullable();
             $table->bigInteger('event_id')->unsigned();
             $table->softDeletes();

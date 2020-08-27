@@ -16,6 +16,15 @@
                 <div class="card">
                     <div class="card-header">
                         <h4><i class="fas fa-bell"></i> Edit Agenda</h4>
+                        <div class="card-header-action">
+                            <a href="{{ route('admin.event.import', $event) }}" class="btn btn-sm btn-warning" title="Import Participant">
+                                <i class="fas fa-users"></i>
+                            </a>
+                          </div>
+                        
+                        {{-- <a href="{{ route('admin.participant.import') }}" class="btn btn-primary">
+                            Import
+                       </a> --}}
                     </div>
 
                     <div class="card-body">

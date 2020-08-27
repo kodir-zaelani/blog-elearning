@@ -126,10 +126,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
         $tags = Tag::latest()->get();
         $categories = Category::latest()->get();
+        $post = Post::findorfail($id);
         return view('admin.posts.edit', compact('post', 'tags', 'categories'));
     }
 
@@ -140,11 +141,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostUpdateRequest $request, Post $post)
+    public function update(PostUpdateRequest $request, $id)
     {
 
         // Cara Kedua
-        $post = Post::findorfail($post->id);
+        $post = Post::findorfail($id);
         //cek gambar lama
         $oldImage = $post->image;
 

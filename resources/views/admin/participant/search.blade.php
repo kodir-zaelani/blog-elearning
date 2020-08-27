@@ -5,14 +5,14 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Participant</h1>
+            <h1>Search</h1>
         </div>
 
         <div class="section-body">
 
             <div class="card card-primary">
                 <div class="card-header">
-                    <h4><i class="fas fa-image"></i> Participants</h4> 
+                    <h4><i class="fas fa-image"></i> Search Participants</h4> 
                     <div class="card-header-action">
                         <a href="{{ route('admin.participant.create') }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Add</a>
                         <a href="{{ route('admin.participant.import') }}" class="btn btn-primary">Import </a>
@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.participant.tampil') }}" method="GET" id="formID">
+                    <form action="{{ route('admin.participant.search') }}" method="GET" id="formID">
                         <div class="form-group">
                             <div class="input-group mb-3">
                                 @can('participants.create')
@@ -29,7 +29,7 @@
                                     <a href="#" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> </a>
                                 </div>
                                 @endcan
-                                <input type="text" class="form-control" name="q" id="InputID"  placeholder="search participant" autofocus>
+                                <input type="text" class="form-control" name="q" id="InputID" placeholder="search participant" autofocus>
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> SEARCH
                                     </button>
@@ -37,48 +37,31 @@
                             </div>
                         </div>
                     </form>
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th scope="col" style="text-align: center;width: 6%">NO.</th>
-                                <th scope="col">ID</th>
-                                <th scope="col">NAMA</th>
-                                {{-- <th scope="col">QRCODE</th> --}}
-                                <th scope="col">KAB./KOTA</th>
-                                <th scope="col" style="width: 15%;text-align: center">AKSI</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($participants as $no => $participant)
-                                <tr>
-                                    <th scope="row" style="text-align: center">{{ ++$no + ($participants->currentPage()-1) * $participants->perPage() }}</th>
-                                    {{-- <td><img src="{{ Storage::url('public/photos/'.$participant->image) }}" style="width: 150px"></td> --}}
-                                    <td>{{ $participant->nik }}</td>
-                                    <td>{{ $participant->name }} </td>
-                                    {{-- <td>{!! QrCode::generate($participant->nik); !!}</td> --}}
-                                    <td>{{ $participant->city }}</td>
-                                    <td class="text-center">
-                                        @can('participants.edit')
-                                            <a href="{{ route('admin.participant.edit', $participant->id) }}" class="btn btn-sm btn-primary" title="Edit">
-                                                <i class="fa fa-pencil-alt"></i>
-                                            </a>
-                                        @endcan
-
-                                        @can('participants.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $participant->id }}">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        @endcan
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        <div style="text-align: center">
-                            {{$participants->links("vendor.pagination.bootstrap-4")}}
+                    
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header text-center">
+                                @foreach ($participants as $participant)
+                                    <div class="card-img  rounded-lg">
+                                        <h3 class="mb-4">SELAMAT DATANG </h3>
+                                        <img src="{{ ($participant->imageurl) ? $participant->imageurl : '/assets/admin/img/avatar/avatar-5.png' }}"  class=" img-thumbnail" style="max-width: 25%;">
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="card-body text-center">
+                                        <h3> <strong>{{ $participant->name }}</strong></h3>
+                                        {{-- <h1>{!! QrCode::generate($participant->nik); !!}</h1> --}}
+                                        <h3>SEBAGAI {{ $participant->statuspeserta }}</h3>
+                                        <h3>RAPAT PIMPINAN DAERAH </h3>
+                                    </div> 
+                                </div>
+                                @endforeach
+                            </div>
                         </div>
+                        
                     </div>
+                   
                 </div>
             </div>
         </div>

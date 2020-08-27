@@ -231,4 +231,10 @@ class EventController extends Controller
             if ( file_exists($thumbnailPath) ) unlink($thumbnailPath);
         }
     }
+
+    public function import(Event $event)
+    {
+        $events = Event::all();
+        return view('admin.participant.import', compact('events', 'event'));
+    }
 }

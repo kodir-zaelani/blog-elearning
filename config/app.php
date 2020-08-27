@@ -166,7 +166,7 @@ return [
          * Package Service Providers...
          */
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-
+        Barryvdh\Snappy\ServiceProvider::class,
         /*
          * Application Service Providers...
          */

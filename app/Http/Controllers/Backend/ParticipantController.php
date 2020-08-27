@@ -3,13 +3,18 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Event;
+use PDF;
+// use Barryvdh\DomPDF\PDF;
 use App\Models\Participant;
+// upload image thumnail
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-// upload image thumnail
+use App\Imports\ParticipantsImport;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ParticipantController extends Controller
 {
@@ -26,10 +31,31 @@ class ParticipantController extends Controller
         $this->uploadPath = public_path(config('cms.image.directoryPhotos'));
     }
 
-    public function event()
+    public function search(Request $request)
     {
-        $events = Event::latest()->paginate(10);
-        return view('admin.participant.event', compact('events'));
+        // $filterKeyword = $request->get('q');
+
+        // $participants = Participant::with('event')->latest()->get();
+        
+        // if($filterKeyword){
+        //   $participants = Participant::latest()->where('nik', 'like', '%'. $filterKeyword . '%')->get();
+        // }
+        $participants = Participant::orderBy('id','desc')->when(request()->q, function($participants) {
+            $participants = $participants->where('nik', 'like', '%'. request()->q . '%');
+        })->take(1)->get();
+
+        return view('admin.participant.search', compact('participants'));
+
+    }
+
+    public function tampil(Request $request)
+    {
+        $filterKeyword = $request->get('q');
+
+        $participant = Participant::orderBy('id','desc')->where('nik', 'like', '%'. $filterKeyword . '%')->get();
+
+        return view('admin.participant.tampil', compact('participant'));
+
     }
 
     public function index()
@@ -37,7 +63,7 @@ class ParticipantController extends Controller
         $events = Event::latest()->get();
 
         $participants = Participant::latest()->when(request()->q, function($participants) {
-            $participants = $participants->where('title', 'like', '%'. request()->q . '%');
+            $participants = $participants->where('nik', 'like', '%'. request()->q . '%');
         })->paginate(10);
         return view('admin.participant.index', compact('participants', 'events'));
     }
@@ -258,4 +284,65 @@ class ParticipantController extends Controller
             if ( file_exists($thumbnailPath) ) unlink($thumbnailPath);
         }
     }
+
+    public function import()
+    {
+        $events = Event::all();
+        return view('admin.participant.import', compact('events'));
+    }
+
+    public function importsave(Request $request)
+    {
+        // dd($request->input('event_id'));
+        $idevent = $request->input('event_id');
+
+        $this->validate($request,[
+            'file' => 'required|mimes:xlsx,xls'
+        ],
+        [
+            'file.required' => 'Pilih File untuk di Import',
+            'file.in' => 'File Tidak Valid'
+        ]);
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file'); //GET FILE
+            
+            config(['excel.import.startRow' => 1]);
+
+            Excel::import(new ParticipantsImport($idevent), $file); //IMPORT FILE 
+
+            Alert::success('Data Berhasil Di Import','Sukses !');
+
+            return redirect()->route('admin.participant.index');
+        }  
+        return redirect()->back()->with(['error' => 'Please choose file before']);
+
+    
+    }
+
+    // public function generate(Event $event)
+    // {
+    //     $event = Event::first();
+    //     $participants = Participant::where('event_id', $event->id)
+    //                 ->orderBy('name', 'asc')
+    //                 ->get();
+        
+    //     $pdf = PDF::loadview('admin.participant.generate', compact('event','participants'));
+    //     // ->setPaper('A4', 'potrait');
+        
+    //     return $pdf->stream();
+    // }
+
+    function generate() {
+
+        $data ['participants'] = Participant::orderBy('name', 'asc')
+                        ->with('event')
+                        ->get();
+
+        $pdf = PDF::loadView('admin.pdf.document', $data);
+
+        return $pdf->stream('document.pdf');
+    }
+
+   
 }

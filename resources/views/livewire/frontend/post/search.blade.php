@@ -1,5 +1,7 @@
 <div>
-    @section("title")Author @endsection
+    @section("title")Search Post @endsection
+    {{-- @section("sub_title")Category @endsection --}}
+    
     <!-- Breadcrumbs -->
     <section class="breadcrumbs overlay bg-image">
         <div class="container">
@@ -7,13 +9,13 @@
                 <div class="col-12">
                     <!-- Bread Title -->
                     <div class="bread-title">
-                        <h2>Author</h2>
+                        <h2>Search</h2>
                     </div>
                     <!-- Bread List -->
                     <ul class="bread-list">
                         <li><a href="{{ route('root') }}"><i class="fa fa-home"></i>Home</a></li>
                         <li><a href="{{ route('post.all') }}"><i class="fa fa-clone"></i>Blog</a></li>
-                        <li class="active"><a href="#"><i class="fa fa-clone"></i>Author Post</a></li>
+                        <li class="active"><a href="#"><i class="fa fa-clone"></i>Search Post</a></li>
                     </ul>
                 </div>
             </div>
@@ -24,9 +26,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-9 col-12">
-                    <div class="alert alert-info">
-                        {{-- <livewire:frontend.main.alert /> --}}
-                         <p>Author name: <strong>{{ $author_name}}</strong></p> 
+                    <div class="alert alert-info col">
+                         {{-- <livewire:frontend.main.alert /> // belum jalan --}}
+                         <livewire:frontend.main.alert />
                     </div>
                     <div class="row">
                         @foreach ($posts as $post)
@@ -57,7 +59,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            
                         </div> 
                         @endforeach
                     </div>
@@ -72,7 +73,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-12">
-                    <livewire:frontend.main.sidebar></livewire:frontend.main.sidebar>
+                    <livewire:frontend.main.sidebar />
                 </div>
             </div>
         </div>

@@ -51,22 +51,22 @@ use Illuminate\Support\Facades\Route;
         Route::resource('/typecourse', 'TypecourseController');
        
         //Screenshoot Class
-        Route::resource('/courselevelclass', 'CourselevelclassController');
+        // Route::resource('/courselevelclass', 'CourselevelclassController');
         
         //Tool Class
-        Route::resource('/tool', 'ToolController');
+        // Route::resource('/tool', 'ToolController');
         
         //Section Class
-        Route::resource('/section', 'SectionController');
+        // Route::resource('/section', 'SectionController');
        
         //Lesson Class
-        Route::resource('/lesson', 'LessonController');
+        // Route::resource('/lesson', 'LessonController');
         
         //Lessoncomplete Class
-        Route::resource('/lessoncomplete', 'LessoncompleteController');
+        // Route::resource('/lessoncomplete', 'LessoncompleteController');
 
         //Todotask Class
-        Route::resource('/todotask', 'TodotaskController');
+        // Route::resource('/todotask', 'TodotaskController');
 
         //Room
         Route::resource('/room', 'RoomController');
@@ -75,10 +75,17 @@ use Illuminate\Support\Facades\Route;
         Route::resource('/setting', 'SettingController');
         
         //Participant
-        Route::resource('/participant', 'ParticipantController');
+        Route::resource('/participant', 'ParticipantController', ['except' => ['show']]);
         
         //Participant
-        Route::get('/participantevent', 'ParticipantController@event')->name('participant.event');
+        Route::get('/participant/tampil', 'ParticipantController@tampil')->name('participant.tampil');
+        Route::get('/participant/search', 'ParticipantController@search')->name('participant.search');
+        Route::get('/participant/import', 'ParticipantController@import')->name('participant.import');
+        Route::get('/participant/generate', 'ParticipantController@generate')->name('participant.generate');
+        Route::post('/participant/importsave', 'ParticipantController@importSave')->name('participant.importsave');
+
+        // Route::get('/student/levelclass/{levelclass}/classroom/{classroom}/import', 'Backend\StudentController@import')->name('student.levelclass.classroom.import');
+        // Route::post('/student/levelclass/{levelclass}/classroom/{classroom}/import', 'Backend\StudentController@importSave')->name('student.levelclass.classroom.importSave');
 
         // Route::get('/lesson/levelclass', 'LessonController@levelclass')->name('lesson.levelclass');
         

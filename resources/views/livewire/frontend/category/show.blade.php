@@ -24,10 +24,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-9 col-12">
-                    <div class="alert alert-info col">
-                         {{-- <livewire:frontend.main.alert /> // belum jalan --}}
+                    {{-- <div class="alert alert-info col">
+                         <livewire:frontend.main.alert /> // belum jalan
                         <p>Category: <strong>{{ $category_title}}</strong></p>
-                    </div>
+                    </div> --}}
                     <div class="row">
                         @foreach ($posts as $post)
                         <div class="col-lg-6 col-md-6 col-12 mb-5">
@@ -52,8 +52,8 @@
                                 </div>
                                 <div class="card-footer">
                                     <ul class="blog-meta3">
-                                        <li><a href="{{ route('category.show',$post->author->slug) }}"><i class="fa fa-folder"></i>{{ $post->category->title  }}</a></li>
-                                        <li><a href="{{ route('tag.show',$post->author->slug) }}"><i class="fa fa-tags"></i>{!! $post->tags_html !!}</a></li>
+                                        <li><a href="{{ route('category.show',$post->category->slug) }}"><i class="fa fa-folder"></i>{{ $post->category->title  }}</a></li>
+                                        <li><i class="fa fa-tags"></i>{!! $post->tags_html !!}</li>
                                     </ul>
                                 </div>
                             </div>

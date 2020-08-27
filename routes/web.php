@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Route::group(['layout' => 'frontend.templates.presensi'], function () {
+    Route::livewire('/presensi', 'frontend.presensi.index')->name('presensi.index');
+    Route::livewire('/presensi/search', 'frontend.presensi.search')->name('presensi.search');
+    Route::livewire('/presensi/video', 'frontend.presensi.video')->name('presensi.video');
+});
 Route::group(['layout' => 'frontend.templates.default'], function () {
     Route::livewire('/', 'frontend.home.index')->name('root');
     Route::livewire('/about', 'frontend.about.index')->name('about.index');

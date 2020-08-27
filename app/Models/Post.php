@@ -162,7 +162,7 @@ class Post extends Model
                             $qr->where('title', 'LIKE', "%{$term}%");
                         });
                         $q->orWhereHas('tags', function($qr) use ($term) {
-                            $qr->where('name', 'LIKE', "%{$term}%");
+                            $qr->where('title', 'LIKE', "%{$term}%");
                         });
                         $q->orWhereRaw('LOWER(title) LIKE ?', ["%{$term}%"]);
                         $q->orWhereRaw('LOWER(content) LIKE ?', ["%{$term}%"]);
@@ -170,10 +170,10 @@ class Post extends Model
         }
     }
 
-    // public function getRouteKeyName()
-    // {
-    //     return 'slug';
-    // }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
 
 }

@@ -52,7 +52,7 @@
                                     <td>{{ $event->location }}</td>
                                     <td>{{ $event->date }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin.participant.index', $event->id) }}" class="btn btn-sm btn-warning" title="Participant">
+                                        <a href="{{ route('admin.participant.index', $event) }}" class="btn btn-sm btn-warning" title=" Participant">
                                             <i class="fas fa-users"></i>
                                         </a>
                                         @can('events.edit')
